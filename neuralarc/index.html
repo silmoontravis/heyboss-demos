@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralArc 弧智科技 — AI Data Analytics Platform | 企業級 AI 數據分析</title>
+<meta name="description" content="NeuralArc 弧智科技是台灣領先的 AI 數據分析 SaaS 平台，運用深度學習與自然語言處理技術，將企業數據轉化為可行的商業洞察。">
+<meta name="keywords" content="AI, artificial intelligence, data analytics, machine learning, deep learning, NLP, SaaS, 數據分析, 人工智慧, 機器學習, NeuralArc, 弧智科技, Taipei, 台北">
+<link rel="canonical" href="https://silmoontravis.github.io/demos/neuralarc/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="NeuralArc 弧智科技 — AI Data Analytics Platform">
+<meta property="og:description" content="運用先進深度學習與 NLP 技術，將複雜企業數據轉化為清晰可行的商業洞察。200+ 企業客戶信賴。">
+<meta property="og:image" content="https://silmoontravis.github.io/demos/neuralarc/photos/hero_dashboard.png">
+<meta property="og:url" content="https://silmoontravis.github.io/demos/neuralarc/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="NeuralArc 弧智科技">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NeuralArc 弧智科技 — AI Data Analytics Platform">
+<meta name="twitter:description" content="運用先進深度學習與 NLP 技術，將複雜企業數據轉化為清晰可行的商業洞察。">
+<meta name="twitter:image" content="https://silmoontravis.github.io/demos/neuralarc/photos/hero_dashboard.png">
+
+<!-- GEO / Local SEO -->
+<meta name="geo.region" content="TW-TPE">
+<meta name="geo.placename" content="Taipei">
+<meta name="geo.position" content="25.0330;121.5654">
+<meta name="ICBM" content="25.0330, 121.5654">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "NeuralArc 弧智科技",
+      "url": "https://silmoontravis.github.io/demos/neuralarc/",
+      "logo": "https://silmoontravis.github.io/demos/neuralarc/logos/logo_final.png",
+      "description": "台灣領先的 AI 數據分析 SaaS 平台，運用深度學習與自然語言處理技術為企業提供智能商業洞察。",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "松仁路 100 號 18 樓",
+        "addressLocality": "Taipei",
+        "addressRegion": "TPE",
+        "addressCountry": "TW",
+        "postalCode": "110"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+886-2-7750-8888",
+        "email": "contact@neuralarc.ai",
+        "contactType": "sales"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "NeuralArc",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "AI Data Analytics",
+      "operatingSystem": "Web",
+      "description": "Enterprise AI data analytics SaaS platform with semantic queries, real-time dashboards, and multi-source integration.",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "TWD",
+        "lowPrice": "12800",
+        "highPrice": "38800",
+        "offerCount": "3"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "NeuralArc 弧智科技"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "200"
+      }
+    }
+  ],
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "HEY!BOSS 銀月數位顧問",
+    "url": "https://www.heyboss.com.tw/"
+  },
+  "url": "https://www.heyboss.com.tw/neuralarc/"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Mobile overflow fix */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0c0c1a;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.08);
+  --border-card: rgba(255,255,255,0.08);
+  --text: #e4e4f0;
+  --text-dim: #9999b3;
+  --accent-start: #4f46e5;
+  --accent-end: #a855f7;
+  --gradient: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  --font-en: 'Inter', sans-serif;
+  --font-tc: 'Noto Sans TC', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-tc), var(--font-en);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* gradient text utility */
+.grad-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Animated Grid Background ===== */
+.grid-bg {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(79,70,229,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,70,229,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridShift 20s linear infinite;
+}
+@keyframes gridShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Radial glow blobs */
+.glow-blob {
+  position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.25; z-index: -1; pointer-events: none;
+}
+.glow-blob.a { width: 600px; height: 600px; background: var(--accent-start); top: -10%; left: -8%; animation: blobA 12s ease-in-out infinite alternate; }
+.glow-blob.b { width: 500px; height: 500px; background: var(--accent-end); bottom: 5%; right: -8%; animation: blobB 14s ease-in-out infinite alternate; }
+.glow-blob.c { width: 350px; height: 350px; background: #6366f1; top: 40%; left: 50%; animation: blobC 16s ease-in-out infinite alternate; }
+@keyframes blobA { to { transform: translate(80px, 100px) scale(1.15); } }
+@keyframes blobB { to { transform: translate(-50px, -80px) scale(1.1); } }
+@keyframes blobC { to { transform: translate(-60px, 40px) scale(0.9); } }
+
+/* ===== Particle dots (CSS-only) ===== */
+.particles {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+}
+.particles span {
+  position: absolute; display: block; border-radius: 50%;
+  background: rgba(168,85,247,0.45);
+  animation: float linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+
+/* ===== Glass Card ===== */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.glass:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(79,70,229,0.15);
+}
+
+/* ===== Nav ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  background: rgba(12,12,26,0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: padding .3s, background .3s;
+}
+nav.scrolled { padding: 10px 0; background: rgba(12,12,26,0.92); }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem;
+}
+.nav-logo img { height: 36px; width: auto; }
+.nav-links { display: flex; gap: 28px; align-items: center; list-style: none; }
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--text-dim); transition: color .3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: var(--gradient); transition: width .3s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+
+/* Language toggle */
+.lang-btn {
+  padding: 6px 16px; border-radius: 8px; border: 1px solid var(--border-card);
+  background: var(--bg-card); color: var(--text); cursor: pointer;
+  font-size: 0.82rem; font-weight: 600; transition: all .3s;
+  backdrop-filter: blur(8px);
+}
+.lang-btn:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); }
+
+/* Mobile menu */
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 24px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('photos/hero_dashboard.png') center/cover no-repeat;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(12,12,26,0.85) 0%,
+    rgba(12,12,26,0.7) 40%,
+    rgba(12,12,26,0.92) 100%
+  );
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.2; margin-bottom: 24px; }
+.hero p.hero-desc { max-width: 620px; margin: 0 auto 40px; font-size: 1.15rem; color: var(--text-dim); line-height: 1.8; }
+.hero-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+/* Animated gradient border on hero */
+.hero::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-start), var(--accent-end), transparent);
+}
+
+/* Stats bar under hero */
+.hero-stats {
+  display: flex; justify-content: center; gap: 48px; margin-top: 60px;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-size: 2.2rem; font-weight: 800;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-stat .label { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; }
+
+.btn-primary {
+  display: inline-block; padding: 15px 38px; border-radius: 14px;
+  background: var(--gradient); color: #fff; font-weight: 600; font-size: 1rem;
+  transition: transform .3s, box-shadow .3s; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,70,229,0.45); }
+.btn-primary:hover::before { opacity: 1; }
+
+.btn-outline {
+  display: inline-block; padding: 15px 38px; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.15); color: var(--text); font-weight: 600; font-size: 1rem;
+  transition: all .3s; cursor: pointer; background: transparent;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.06); border-color: rgba(168,85,247,0.5); transform: translateY(-2px); }
+
+/* ===== Section common ===== */
+section { padding: 110px 0; }
+.section-label {
+  text-transform: uppercase; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px;
+  color: var(--accent-end); margin-bottom: 12px;
+}
+.section-title { font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 700; margin-bottom: 18px; }
+.section-desc { color: var(--text-dim); max-width: 600px; margin-bottom: 56px; font-size: 1.05rem; }
+.section-desc.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-title.center, .section-label.center { text-align: center; }
+
+/* ===== Features Grid ===== */
+.features-section { position: relative; }
+.features-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.features-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.feature-card { padding: 32px 24px; }
+.feature-icon {
+  width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  background: var(--gradient); margin-bottom: 18px; font-size: 1.4rem;
+}
+.feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; font-weight: 600; }
+.feature-card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+
+.features-image {
+  position: relative; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.features-image img { width: 100%; display: block; }
+.features-image::after {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+  pointer-events: none;
+}
+/* floating glow behind product image */
+.features-image::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 80%; height: 80%; background: var(--gradient); filter: blur(60px); opacity: 0.2; z-index: -1;
+}
+
+/* ===== Use Cases ===== */
+.use-cases-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+}
+.use-card { padding: 0; overflow: hidden; }
+.use-card-header {
+  height: 180px; display: flex; align-items: flex-end; padding: 24px 28px;
+  position: relative;
+}
+.use-card-header::before {
+  content: ''; position: absolute; inset: 0; opacity: 0.2;
+}
+.use-card:nth-child(1) .use-card-header::before { background: linear-gradient(135deg, #4f46e5, #6366f1); }
+.use-card:nth-child(2) .use-card-header::before { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.use-card:nth-child(3) .use-card-header::before { background: linear-gradient(135deg, #a855f7, #ec4899); }
+.use-card-header h3 { position: relative; z-index: 1; font-size: 1.35rem; }
+.use-card-body { padding: 28px; }
+.use-card-body p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 16px; line-height: 1.7; }
+.use-card-body ul { list-style: none; padding: 0; }
+.use-card-body li {
+  padding: 7px 0; font-size: 0.88rem; color: var(--text-dim);
+  display: flex; align-items: center; gap: 10px;
+}
+.use-card-body li::before { content: '\2192'; color: var(--accent-end); font-weight: 700; }
+
+/* ===== Pricing ===== */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+  align-items: start;
+}
+.price-card { padding: 44px 34px; text-align: center; position: relative; }
+.price-card.featured {
+  border-color: rgba(168,85,247,0.3);
+  background: rgba(168,85,247,0.06);
+  transform: scale(1.03);
+}
+.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+.price-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--gradient); color: #fff; font-size: 0.78rem; font-weight: 700;
+  padding: 5px 18px; border-radius: 20px;
+}
+.price-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
+.price-card .price {
+  font-size: 2.8rem; font-weight: 800; margin: 18px 0 6px;
+}
+.price-card .period { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 28px; display: block; }
+.price-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
+.price-card li {
+  padding: 9px 0; font-size: 0.9rem; color: var(--text-dim); border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex; align-items: center; gap: 10px;
+}
+.price-card li::before { content: '\2713'; color: #a855f7; font-weight: 700; }
+.price-card .btn-primary, .price-card .btn-outline { width: 100%; text-align: center; margin-left: 0; }
+
+/* ===== Team ===== */
+.team-section { position: relative; }
+.team-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.team-image {
+  position: relative; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+.team-image img { width: 100%; display: block; }
+.team-image::after {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+  pointer-events: none;
+}
+.team-content h2 { margin-bottom: 20px; }
+.team-content p { color: var(--text-dim); margin-bottom: 20px; line-height: 1.8; font-size: 1.02rem; }
+.team-highlights { list-style: none; padding: 0; margin-top: 28px; }
+.team-highlights li {
+  padding: 10px 0; display: flex; align-items: center; gap: 12px;
+  color: var(--text-dim); font-size: 0.95rem;
+}
+.team-highlights li::before { content: '\2713'; color: var(--accent-end); font-weight: 700; font-size: 1.1rem; }
+
+/* Office image */
+.office-banner {
+  position: relative; border-radius: 24px; overflow: hidden; margin-top: 56px;
+  max-height: 360px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+}
+.office-banner img { width: 100%; height: 360px; object-fit: cover; display: block; }
+.office-banner::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(12,12,26,0.7));
+  pointer-events: none;
+}
+.office-banner::before {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+  pointer-events: none; z-index: 1;
+}
+
+/* ===== Contact ===== */
+.contact-wrapper {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+}
+.contact-info h2 { font-size: 1.9rem; margin-bottom: 18px; }
+.contact-info p { color: var(--text-dim); margin-bottom: 28px; line-height: 1.8; }
+.contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; color: var(--text-dim); font-size: 0.92rem; }
+.contact-detail .icon-circle {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--bg-card); border: 1px solid var(--border-card); font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.contact-form { display: flex; flex-direction: column; gap: 16px; padding: 36px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 15px 18px; border-radius: 12px;
+  border: 1px solid var(--border-card); background: rgba(255,255,255,0.03);
+  color: var(--text); font-family: inherit; font-size: 0.95rem;
+  transition: border-color .3s, box-shadow .3s;
+  outline: none;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--accent-end);
+  box-shadow: 0 0 0 3px rgba(168,85,247,0.1);
+}
+.contact-form textarea { min-height: 130px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ===== Footer ===== */
+footer {
+  padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center; color: var(--text-dim); font-size: 0.85rem;
+}
+
+/* ===== Floating BGM Button ===== */
+.bgm-btn {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--gradient); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(79,70,229,0.4);
+  transition: transform .3s, box-shadow .3s;
+  color: #fff; font-size: 1.3rem;
+}
+.bgm-btn:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(79,70,229,0.55); }
+.bgm-btn.playing .bgm-icon { animation: pulse-music 1s ease-in-out infinite; }
+@keyframes pulse-music {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ===== Neural Canvas ===== */
+.neural-canvas {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Stagger children */
+.stagger-children > *:nth-child(1) { transition-delay: 0s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.2s; }
+.stagger-children > *:nth-child(4) { transition-delay: 0.3s; }
+
+/* ===== Divider ===== */
+.section-divider {
+  height: 1px; border: none; margin: 0;
+  background: linear-gradient(90deg, transparent, rgba(79,70,229,0.3), rgba(168,85,247,0.3), transparent);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 960px) {
+  .features-layout, .team-layout { grid-template-columns: 1fr; gap: 40px; }
+  .features-image { order: -1; }
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(12,12,26,0.96); backdrop-filter: blur(24px); padding: 24px;
+    gap: 18px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav-links.open { display: flex; }
+  .menu-toggle { display: block; }
+  .hero { padding-top: 120px; }
+  .hero h1 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+  .hero-stats { gap: 28px; }
+  .hero-stat .num { font-size: 1.6rem; }
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .office-banner img { height: 220px; }
+}
+
+@media(max-width:1200px) and (min-width:769px){
+  .lang-toggle{top:auto!important;bottom:20px!important;right:20px!important;z-index:1000}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "科技新創公司需要什麼樣的網站？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "科技新創需要：清楚的產品說明、技術優勢展示、團隊介紹、投資人/客戶入口。HEY!BOSS 的 AI 建站服務能快速產出科技感十足的品牌網站，搭配 CI/CD 自動部署，隨時更新不用等。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何快速建立公司官網？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "傳統方式需要 1-3 個月和大量預算。HEY!BOSS 用 AI 技術顛覆這個流程：一天就能建好包含品牌設計、Logo、BGM、雙語內容的完整官網，還附帶自動部署和 SEO 監控。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Background effects -->
+<div class="grid-bg"></div>
+<div class="glow-blob a"></div>
+<div class="glow-blob b"></div>
+<div class="glow-blob c"></div>
+<div class="particles" id="particles"></div>
+
+<!-- ===== BGM Button ===== -->
+<button class="bgm-btn" id="bgmBtn" title="Toggle Music" aria-label="Toggle background music">
+  <span class="bgm-icon">&#9835;</span>
+</button>
+<audio id="bgmAudio" src="bgm.mp3" loop preload="none"></audio>
+
+<!-- ===== Navigation ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logos/logo_final.png" alt="NeuralArc Logo">
+      <span>NeuralArc</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features" data-i18n="nav_features">產品功能</a></li>
+      <li><a href="#usecases" data-i18n="nav_usecases">應用場景</a></li>
+      <li><a href="#pricing" data-i18n="nav_pricing">方案價格</a></li>
+      <li><a href="#team" data-i18n="nav_team">團隊介紹</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">聯絡我們</a></li>
+      <li><button class="lang-btn" id="langToggle">EN</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="neuralCanvas" class="neural-canvas"></canvas>
+  <div class="container hero-content">
+    <p class="section-label" data-i18n="hero_label">下一代 AI 數據分析平台</p>
+    <h1 data-i18n="hero_title">讓數據說話<br>用 <span class="grad-text">AI 驅動決策</span></h1>
+    <p class="hero-desc" data-i18n="hero_desc">NeuralArc 弧智科技運用先進的深度學習與自然語言處理技術，將複雜的企業數據轉化為清晰可行的商業洞察。</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary" data-i18n="hero_cta">預約免費 Demo</a>
+      <a href="#features" class="btn-outline" data-i18n="hero_cta2">了解更多</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num" data-i18n="stat1_num">200+</div>
+        <div class="label" data-i18n="stat1_label">企業客戶</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" data-i18n="stat2_num">50M+</div>
+        <div class="label" data-i18n="stat2_label">日處理資料筆數</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" data-i18n="stat3_num">99.9%</div>
+        <div class="label" data-i18n="stat3_label">系統可用性</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" data-i18n="stat4_num">40%</div>
+        <div class="label" data-i18n="stat4_label">平均效率提升</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== Features ===== -->
+<section id="features" class="features-section">
+  <div class="container">
+    <p class="section-label center reveal" data-i18n="feat_label">核心功能</p>
+    <h2 class="section-title center reveal" data-i18n="feat_title">為企業打造的 AI 分析引擎</h2>
+    <p class="section-desc center reveal" data-i18n="feat_desc">從資料接入到洞察輸出，一站式解決方案覆蓋全流程。</p>
+
+    <div class="features-layout">
+      <div class="features-grid stagger-children">
+        <div class="glass feature-card reveal">
+          <div class="feature-icon">&#129504;</div>
+          <h3 data-i18n="f1_title">智能語義分析</h3>
+          <p data-i18n="f1_desc">支援自然語言查詢，直接用中英文提問即可從 TB 級資料庫中獲取精準答案，無需撰寫 SQL。</p>
+        </div>
+        <div class="glass feature-card reveal">
+          <div class="feature-icon">&#128202;</div>
+          <h3 data-i18n="f2_title">即時視覺化儀表板</h3>
+          <p data-i18n="f2_desc">動態拖拽式儀表板，支援 50+ 圖表類型，資料變更時自動更新，秒級回應。</p>
+        </div>
+        <div class="glass feature-card reveal">
+          <div class="feature-icon">&#128279;</div>
+          <h3 data-i18n="f3_title">多源資料整合</h3>
+          <p data-i18n="f3_desc">一鍵連接 MySQL、PostgreSQL、Snowflake、BigQuery 等 30+ 資料來源，自動偵測 Schema。</p>
+        </div>
+        <div class="glass feature-card reveal">
+          <div class="feature-icon">&#128737;</div>
+          <h3 data-i18n="f4_title">企業級安全合規</h3>
+          <p data-i18n="f4_desc">SOC 2 Type II 認證、端到端加密、細粒度角色權限控制，滿足金融與醫療產業合規需求。</p>
+        </div>
+      </div>
+      <div class="features-image reveal-right">
+        <img src="photos/product.png" alt="NeuralArc AI Dashboard" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== Use Cases ===== -->
+<section id="usecases">
+  <div class="container">
+    <p class="section-label center reveal" data-i18n="uc_label">應用場景</p>
+    <h2 class="section-title center reveal" data-i18n="uc_title">跨產業的智能數據解決方案</h2>
+    <p class="section-desc center reveal" data-i18n="uc_desc">從金融風控到製造業供應鏈，NeuralArc 已為超過 200 家企業提供服務。</p>
+    <div class="use-cases-grid">
+
+      <div class="glass use-card reveal">
+        <div class="use-card-header"><h3 data-i18n="uc1_title">金融風險管理</h3></div>
+        <div class="use-card-body">
+          <p data-i18n="uc1_desc">整合交易數據、市場指標與客戶行為，即時偵測異常模式。</p>
+          <ul>
+            <li data-i18n="uc1_a">詐欺偵測準確率提升 40%</li>
+            <li data-i18n="uc1_b">信用評分模型自動迭代</li>
+            <li data-i18n="uc1_c">合規報告自動生成</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="glass use-card reveal">
+        <div class="use-card-header"><h3 data-i18n="uc2_title">零售智慧營運</h3></div>
+        <div class="use-card-body">
+          <p data-i18n="uc2_desc">預測消費趨勢、優化庫存水位、個性化推薦引擎一體化。</p>
+          <ul>
+            <li data-i18n="uc2_a">銷售預測誤差 &lt; 5%</li>
+            <li data-i18n="uc2_b">庫存周轉率提升 30%</li>
+            <li data-i18n="uc2_c">客戶 LTV 成長 25%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="glass use-card reveal">
+        <div class="use-card-header"><h3 data-i18n="uc3_title">製造業供應鏈</h3></div>
+        <div class="use-card-body">
+          <p data-i18n="uc3_desc">IoT 感測器數據分析、預測性維護、生產排程最佳化。</p>
+          <ul>
+            <li data-i18n="uc3_a">設備停機時間減少 50%</li>
+            <li data-i18n="uc3_b">物料浪費降低 20%</li>
+            <li data-i18n="uc3_c">交期達成率超過 98%</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== Pricing ===== -->
+<section id="pricing">
+  <div class="container">
+    <p class="section-label center reveal" data-i18n="pr_label">方案價格</p>
+    <h2 class="section-title center reveal" data-i18n="pr_title">選擇適合您的方案</h2>
+    <p class="section-desc center reveal" data-i18n="pr_desc">所有方案皆包含 14 天免費試用，無需綁定信用卡。</p>
+    <div class="pricing-grid">
+
+      <div class="glass price-card reveal">
+        <h3 data-i18n="p1_name">Starter 新創版</h3>
+        <div class="price grad-text">NT$12,800</div>
+        <span class="period" data-i18n="p1_period">/ 月，年付享 85 折</span>
+        <ul>
+          <li data-i18n="p1_a">最多 5 位使用者</li>
+          <li data-i18n="p1_b">3 個資料來源連接</li>
+          <li data-i18n="p1_c">基礎 AI 語義查詢</li>
+          <li data-i18n="p1_d">標準儀表板模板</li>
+          <li data-i18n="p1_e">Email 技術支援</li>
+        </ul>
+        <a href="#contact" class="btn-outline" data-i18n="p_cta_start">開始試用</a>
+      </div>
+
+      <div class="glass price-card featured reveal">
+        <span class="price-badge" data-i18n="p2_badge">最受歡迎</span>
+        <h3 data-i18n="p2_name">Pro 專業版</h3>
+        <div class="price grad-text">NT$38,800</div>
+        <span class="period" data-i18n="p2_period">/ 月，年付享 8 折</span>
+        <ul>
+          <li data-i18n="p2_a">最多 25 位使用者</li>
+          <li data-i18n="p2_b">無限資料來源連接</li>
+          <li data-i18n="p2_c">進階 AI 模型 + 自訂訓練</li>
+          <li data-i18n="p2_d">協作式儀表板 & 排程報表</li>
+          <li data-i18n="p2_e">優先即時客服</li>
+          <li data-i18n="p2_f">API 存取</li>
+        </ul>
+        <a href="#contact" class="btn-primary" data-i18n="p_cta_pro">立即升級</a>
+      </div>
+
+      <div class="glass price-card reveal">
+        <h3 data-i18n="p3_name">Enterprise 企業版</h3>
+        <div class="price grad-text" data-i18n="p3_price">客製報價</div>
+        <span class="period" data-i18n="p3_period">依需求量身打造</span>
+        <ul>
+          <li data-i18n="p3_a">不限使用者人數</li>
+          <li data-i18n="p3_b">私有雲 / 地端部署</li>
+          <li data-i18n="p3_c">專屬 AI 模型訓練</li>
+          <li data-i18n="p3_d">SSO & SAML 整合</li>
+          <li data-i18n="p3_e">專屬客戶成功經理</li>
+          <li data-i18n="p3_f">SLA 99.99% 保證</li>
+        </ul>
+        <a href="#contact" class="btn-outline" data-i18n="p_cta_ent">聯絡業務</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== Team ===== -->
+<section id="team" class="team-section">
+  <div class="container">
+    <p class="section-label center reveal" data-i18n="tm_label">團隊介紹</p>
+    <h2 class="section-title center reveal" data-i18n="tm_title">由頂尖 AI 人才驅動</h2>
+    <p class="section-desc center reveal" data-i18n="tm_desc">我們的團隊匯集來自 Google、Meta、台大的頂尖工程師與資料科學家。</p>
+
+    <div class="team-layout">
+      <div class="team-image reveal-left">
+        <img src="photos/team.png" alt="NeuralArc Team" loading="lazy">
+      </div>
+      <div class="team-content reveal-right">
+        <h2 class="section-title" data-i18n="tm_content_title">專注創新，成就非凡</h2>
+        <p data-i18n="tm_p1">NeuralArc 成立於 2023 年，致力於用最前沿的 AI 技術解決企業數據分析的痛點。我們相信數據的力量，更相信好的工具能讓每個人都成為數據分析師。</p>
+        <p data-i18n="tm_p2">團隊成員平均擁有 10 年以上的 AI / ML 工程經驗，涵蓋自然語言處理、電腦視覺、大規模分散式系統等關鍵領域。</p>
+        <ul class="team-highlights">
+          <li data-i18n="tm_h1">核心團隊來自 Google Brain、Meta AI Research</li>
+          <li data-i18n="tm_h2">累計發表 50+ 頂會論文（NeurIPS / ICML / ACL）</li>
+          <li data-i18n="tm_h3">已獲 A 輪融資，估值超過 NT$ 15 億</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="office-banner reveal" style="margin-top:56px">
+      <img src="photos/office.png" alt="NeuralArc Office" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== Contact ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info reveal-left">
+        <p class="section-label" data-i18n="ct_label">聯絡我們</p>
+        <h2 class="section-title" data-i18n="ct_title">與我們聊聊您的數據挑戰</h2>
+        <p data-i18n="ct_desc">無論您正在評估 AI 分析方案，或想了解 NeuralArc 如何為您的產業帶來價值，我們的團隊都很樂意提供協助。</p>
+        <div class="contact-detail"><span class="icon-circle">&#9993;</span> <span>contact@neuralarc.ai</span></div>
+        <div class="contact-detail"><span class="icon-circle">&#9742;</span> <span>+886-2-7750-8888</span></div>
+        <div class="contact-detail"><span class="icon-circle">&#128205;</span> <span data-i18n="ct_addr">台北市信義區松仁路 100 號 18 樓</span></div>
+      </div>
+      <form class="glass contact-form reveal-right" onsubmit="event.preventDefault(); alert(currentLang === 'en' ? 'Thank you! We will contact you shortly.' : '感謝您的留言，我們將盡快回覆！')">
+        <div class="form-row">
+          <input type="text" data-i18n-placeholder="form_name" placeholder="姓名" required>
+          <input type="email" data-i18n-placeholder="form_email" placeholder="Email" required>
+        </div>
+        <input type="text" data-i18n-placeholder="form_company" placeholder="公司名稱">
+        <textarea data-i18n-placeholder="form_msg" placeholder="請描述您的需求或問題..."></textarea>
+        <button type="submit" class="btn-primary" data-i18n="form_submit">送出訊息</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <p data-i18n="footer">&copy; 2026 NeuralArc 弧智科技. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Particle Generator ===== */
+(function(){
+  var c = document.getElementById('particles');
+  for (var i = 0; i < 40; i++) {
+    var s = document.createElement('span');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDuration = (8 + Math.random() * 16) + 's';
+    s.style.animationDelay = Math.random() * 12 + 's';
+    var size = (2 + Math.random() * 3) + 'px';
+    s.style.width = size;
+    s.style.height = size;
+    s.style.background = Math.random() > 0.5
+      ? 'rgba(168,85,247,0.4)'
+      : 'rgba(79,70,229,0.4)';
+    c.appendChild(s);
+  }
+})();
+
+/* ===== Nav scroll shrink ===== */
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ===== Mobile menu ===== */
+document.getElementById('menuToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ===== Scroll reveal ===== */
+var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+/* ===== BGM Toggle ===== */
+(function(){
+  var btn = document.getElementById('bgmBtn');
+  var audio = document.getElementById('bgmAudio');
+  var playing = false;
+  btn.addEventListener('click', function() {
+    if (playing) {
+      audio.pause();
+      btn.classList.remove('playing');
+    } else {
+      audio.play().catch(function(){});
+      btn.classList.add('playing');
+    }
+    playing = !playing;
+  });
+})();
+
+/* ===== i18n ===== */
+var currentLang = 'zh';
+var i18n = {
+  en: {
+    nav_features: 'Features', nav_usecases: 'Use Cases', nav_pricing: 'Pricing', nav_team: 'Team', nav_contact: 'Contact',
+    hero_label: 'NEXT-GEN AI DATA ANALYTICS PLATFORM',
+    hero_title: 'Let Data Speak.<br><span class="grad-text">AI-Powered Decisions.</span>',
+    hero_desc: 'NeuralArc leverages advanced deep learning and NLP to transform complex enterprise data into clear, actionable business insights.',
+    hero_cta: 'Book a Free Demo', hero_cta2: 'Learn More',
+    stat1_num: '200+', stat1_label: 'Enterprise Clients',
+    stat2_num: '50M+', stat2_label: 'Daily Records Processed',
+    stat3_num: '99.9%', stat3_label: 'System Uptime',
+    stat4_num: '40%', stat4_label: 'Avg. Efficiency Gain',
+    feat_label: 'CORE FEATURES', feat_title: 'An AI Analytics Engine Built for Enterprise',
+    feat_desc: 'End-to-end solution from data ingestion to insight delivery.',
+    f1_title: 'Semantic AI Queries', f1_desc: 'Ask questions in plain English or Chinese to query TB-scale databases instantly \u2014 no SQL needed.',
+    f2_title: 'Real-Time Dashboards', f2_desc: 'Drag-and-drop dashboards with 50+ chart types. Auto-refresh on data changes with sub-second latency.',
+    f3_title: 'Multi-Source Integration', f3_desc: 'One-click connectors for MySQL, PostgreSQL, Snowflake, BigQuery and 30+ data sources with auto schema detection.',
+    f4_title: 'Enterprise Security', f4_desc: 'SOC 2 Type II certified, end-to-end encryption, and granular RBAC to meet financial and healthcare compliance.',
+    uc_label: 'USE CASES', uc_title: 'Intelligent Data Solutions Across Industries',
+    uc_desc: 'NeuralArc serves 200+ enterprises from fintech to manufacturing.',
+    uc1_title: 'Financial Risk Management', uc1_desc: 'Integrate transaction data, market indicators, and customer behavior to detect anomalies in real time.',
+    uc1_a: '40% improvement in fraud detection accuracy', uc1_b: 'Auto-iterating credit scoring models', uc1_c: 'Automated compliance reporting',
+    uc2_title: 'Smart Retail Operations', uc2_desc: 'Predict consumer trends, optimize inventory levels, and power personalized recommendation engines.',
+    uc2_a: 'Sales forecast error < 5%', uc2_b: '30% increase in inventory turnover', uc2_c: '25% growth in customer LTV',
+    uc3_title: 'Manufacturing Supply Chain', uc3_desc: 'IoT sensor analytics, predictive maintenance, and production scheduling optimization.',
+    uc3_a: '50% reduction in equipment downtime', uc3_b: '20% less material waste', uc3_c: 'On-time delivery rate over 98%',
+    pr_label: 'PRICING', pr_title: 'Choose Your Plan', pr_desc: 'All plans include a 14-day free trial. No credit card required.',
+    p1_name: 'Starter', p1_period: '/ month (15% off annually)', p1_a: 'Up to 5 users', p1_b: '3 data source connections', p1_c: 'Basic AI semantic queries', p1_d: 'Standard dashboard templates', p1_e: 'Email support',
+    p2_badge: 'Most Popular', p2_name: 'Pro', p2_period: '/ month (20% off annually)', p2_a: 'Up to 25 users', p2_b: 'Unlimited data sources', p2_c: 'Advanced AI + custom model training', p2_d: 'Collaborative dashboards & scheduled reports', p2_e: 'Priority live support', p2_f: 'API access',
+    p3_name: 'Enterprise', p3_price: 'Custom', p3_period: 'Tailored to your needs', p3_a: 'Unlimited users', p3_b: 'Private cloud / on-premise', p3_c: 'Dedicated AI model training', p3_d: 'SSO & SAML integration', p3_e: 'Dedicated Customer Success Manager', p3_f: '99.99% SLA guarantee',
+    p_cta_start: 'Start Free Trial', p_cta_pro: 'Upgrade Now', p_cta_ent: 'Contact Sales',
+    tm_label: 'OUR TEAM', tm_title: 'Powered by World-Class AI Talent',
+    tm_desc: 'Our team brings together top engineers and data scientists from Google, Meta, and National Taiwan University.',
+    tm_content_title: 'Focused on Innovation, Delivering Excellence',
+    tm_p1: 'Founded in 2023, NeuralArc is dedicated to solving enterprise data analytics pain points with cutting-edge AI. We believe in the power of data, and that great tools can make everyone a data analyst.',
+    tm_p2: 'Team members average 10+ years of AI/ML engineering experience spanning NLP, computer vision, and large-scale distributed systems.',
+    tm_h1: 'Core team from Google Brain & Meta AI Research',
+    tm_h2: '50+ publications at top conferences (NeurIPS / ICML / ACL)',
+    tm_h3: 'Series A funded, valued at over NT$1.5 billion',
+    ct_label: 'CONTACT US', ct_title: 'Let\'s Talk About Your Data Challenges',
+    ct_desc: 'Whether you\'re evaluating AI analytics solutions or want to learn how NeuralArc can create value for your industry, our team is here to help.',
+    ct_addr: '18F, No. 100, Songren Rd., Xinyi Dist., Taipei',
+    form_name: 'Name', form_email: 'Email', form_company: 'Company', form_msg: 'Describe your needs or questions...',
+    form_submit: 'Send Message',
+    footer: '\u00a9 2026 NeuralArc. All rights reserved.'
+  }
+};
+
+/* Cache original Chinese text */
+var zhCache = {};
+document.querySelectorAll('[data-i18n]').forEach(function(el) { zhCache[el.dataset.i18n] = el.innerHTML; });
+var zhPlaceholders = {};
+document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) { zhPlaceholders[el.dataset.i18nPlaceholder] = el.placeholder; });
+
+function setLang(lang) {
+  currentLang = lang;
+  if (lang === 'en') {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.dataset.i18n;
+      if (i18n.en[key]) el.innerHTML = i18n.en[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      var key = el.dataset.i18nPlaceholder;
+      if (i18n.en[key]) el.placeholder = i18n.en[key];
+    });
+    document.getElementById('langToggle').textContent = '\u4e2d\u6587';
+    document.documentElement.lang = 'en';
+  } else {
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.dataset.i18n;
+      if (zhCache[key]) el.innerHTML = zhCache[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+      var key = el.dataset.i18nPlaceholder;
+      if (zhPlaceholders[key]) el.placeholder = zhPlaceholders[key];
+    });
+    document.getElementById('langToggle').textContent = 'EN';
+    document.documentElement.lang = 'zh-Hant';
+  }
+}
+
+document.getElementById('langToggle').addEventListener('click', function() {
+  setLang(currentLang === 'zh' ? 'en' : 'zh');
+});
+
+/* ===== Neural Network Canvas Animation ===== */
+(function(){
+  var canvas = document.getElementById('neuralCanvas');
+  var ctx = canvas.getContext('2d');
+  var nodes = [];
+  var edges = [];
+  var pulses = [];
+  var nodeCount = 35;
+  var maxDist = 220;
+  var rotation = 0;
+  var centerX, centerY;
+  var dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    var hero = document.getElementById('hero');
+    var w = hero.offsetWidth;
+    var h = hero.offsetHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    centerX = w / 2;
+    centerY = h / 2;
+  }
+
+  function initNodes() {
+    nodes = [];
+    edges = [];
+    for (var i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width / dpr,
+        y: Math.random() * canvas.height / dpr,
+        radius: 2 + Math.random() * 3,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function spawnPulse() {
+    if (edges.length === 0) return;
+    var ei = Math.floor(Math.random() * edges.length);
+    var e = edges[ei];
+    pulses.push({ from: e[0], to: e[1], t: 0, speed: 0.008 + Math.random() * 0.012 });
+  }
+
+  function draw(time) {
+    var w = canvas.width / dpr;
+    var h = canvas.height / dpr;
+    ctx.clearRect(0, 0, w, h);
+    rotation += 0.0003;
+
+    // Update node positions with slow drift + gentle rotation
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      // drift
+      n.x += n.vx;
+      n.y += n.vy;
+      // gentle rotation around center
+      var dx = n.x - centerX;
+      var dy = n.y - centerY;
+      var cos = Math.cos(rotation * 0.01);
+      var sin = Math.sin(rotation * 0.01);
+      n.x = centerX + dx * cos - dy * sin;
+      n.y = centerY + dx * sin + dy * cos;
+      // bounce off edges with margin
+      if (n.x < -20) { n.x = -20; n.vx *= -1; }
+      if (n.x > w + 20) { n.x = w + 20; n.vx *= -1; }
+      if (n.y < -20) { n.y = -20; n.vy *= -1; }
+      if (n.y > h + 20) { n.y = h + 20; n.vy *= -1; }
+    }
+
+    // Build edges
+    edges = [];
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx = nodes[i].x - nodes[j].x;
+        var dy = nodes[i].y - nodes[j].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          edges.push([i, j, dist]);
+        }
+      }
+    }
+
+    // Draw edges
+    for (var i = 0; i < edges.length; i++) {
+      var e = edges[i];
+      var a = nodes[e[0]];
+      var b = nodes[e[1]];
+      var alpha = (1 - e[2] / maxDist) * 0.25;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = 'rgba(99, 102, 241,' + alpha + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+
+    // Draw pulses
+    for (var i = pulses.length - 1; i >= 0; i--) {
+      var p = pulses[i];
+      p.t += p.speed;
+      if (p.t > 1) { pulses.splice(i, 1); continue; }
+      var a = nodes[p.from];
+      var b = nodes[p.to];
+      var px = a.x + (b.x - a.x) * p.t;
+      var py = a.y + (b.y - a.y) * p.t;
+      var glow = ctx.createRadialGradient(px, py, 0, px, py, 8);
+      glow.addColorStop(0, 'rgba(168, 85, 247, 0.9)');
+      glow.addColorStop(1, 'rgba(168, 85, 247, 0)');
+      ctx.beginPath();
+      ctx.arc(px, py, 8, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
+    }
+
+    // Draw nodes
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      var pulse = 0.6 + 0.4 * Math.sin(time * 0.002 + n.phase);
+      // outer glow
+      var g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius * 4);
+      g.addColorStop(0, 'rgba(99, 102, 241,' + (0.3 * pulse) + ')');
+      g.addColorStop(1, 'rgba(99, 102, 241, 0)');
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius * 4, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+      // core
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(168, 85, 247,' + (0.5 + 0.5 * pulse) + ')';
+      ctx.fill();
+    }
+
+    // Spawn pulses periodically
+    if (Math.random() < 0.04) spawnPulse();
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  initNodes();
+  requestAnimationFrame(draw);
+  window.addEventListener('resize', function() { resize(); });
+})();
+
+/* ===== Smooth scroll for nav links ===== */
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function() { document.getElementById('navLinks').classList.remove('open'); });
+});
+</script>
+
+<!-- HeyBoss CTA Widget -->
+<div id="heyboss-cta" style="position:fixed;bottom:24px;left:24px;z-index:9998;display:flex;align-items:flex-end;gap:10px;font-family:'Noto Sans TC',sans-serif">
+  <div id="heyboss-bubble" style="display:none;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:260px;border:1px solid #e5e7eb;animation:heybossFadeIn .3s ease">
+    <div style="font-size:14px;font-weight:700;color:#005FDF;margin-bottom:6px">需要這樣的網站？</div>
+    <div style="font-size:12px;color:#6b7280;line-height:1.6;margin-bottom:12px">HEY!BOSS 銀月數位顧問<br>為您量身打造品牌網站</div>
+    <a href="https://silmoontravis.github.io/demos/#contact" style="display:block;background:#005FDF;color:#fff;text-align:center;padding:10px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#003E8F'" onmouseout="this.style.background='#005FDF'">免費諮詢</a>
+  </div>
+  <button onclick="document.getElementById('heyboss-bubble').style.display=document.getElementById('heyboss-bubble').style.display==='none'?'block':'none'" style="width:52px;height:52px;border-radius:50%;background:#005FDF;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,95,223,0.3);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 6px 24px rgba(0,95,223,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,95,223,0.3)'">
+    <img src="https://silmoontravis.github.io/demos/heyboss/logos/logo_final.png" alt="HEY!BOSS" style="width:32px;height:32px;object-fit:contain;filter:brightness(10)">
+  </button>
+</div>
+<style>@keyframes heybossFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}/* tablet-lang-fix */
+@media(max-width:1200px) and (min-width:769px){
+.lang-toggle{position:fixed!important;top:auto!important;bottom:20px!important;right:20px!important;z-index:9999!important}
+}
+</style>
+
+
+<div style="text-align:center;padding:12px;font-size:11px;color:rgba(0,0,0,0.25);border-top:1px solid rgba(0,0,0,0.05);margin-top:8px">
+  <a href="https://silmoontravis.github.io/demos/" style="color:rgba(0,0,0,0.3);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#005FDF'" onmouseout="this.style.color='rgba(0,0,0,0.3)'">© 2026 HEY!BOSS 銀月數位顧問股份有限公司 All Rights Reserved.</a>
+</div>
+
+</body>
+</html>
