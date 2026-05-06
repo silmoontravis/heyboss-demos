@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈柏宇（Maki）— AI 操盘手 / AI 产品总监</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 24px;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-info span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 36px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--accent), var(--gold));
+            border-radius: 2px;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .metric-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Case Studies */
+        .case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s ease;
+        }
+
+        .case-card:hover {
+            border-color: var(--accent);
+        }
+
+        .case-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .case-item {
+            padding: 12px 16px;
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .case-item.result {
+            border-left-color: var(--gold);
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .case-item-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .case-item-content {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* Tool Stack */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .stack-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .stack-category {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            white-space: nowrap;
+            min-width: 80px;
+            padding-top: 2px;
+        }
+
+        .stack-tools {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--gold), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 36px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 16px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-role {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        .timeline-team {
+            font-size: 0.75rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .timeline-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 4px;
+            list-style: none;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .timeline-desc li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Onboarding */
+        .onboarding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .onboarding-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .onboarding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+        }
+
+        .onboarding-month {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .onboarding-content {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Education */
+        .edu-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .edu-item {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding-left: 16px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .edu-item strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name { font-size: 2.2rem; }
+            .title { font-size: 1.1rem; }
+            .case-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .header { padding: 50px 0 40px; }
+            .section { padding: 40px 0; }
+            .timeline-date { margin-left: 0; width: 100%; }
+            .stack-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .metric-number { font-size: 1.8rem; }
+            .onboarding-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: white;
+                color: #1a1a1a;
+                font-size: 11pt;
+            }
+
+            .header::before { display: none; }
+
+            .name {
+                background: none;
+                -webkit-text-fill-color: #1a1a1a;
+                color: #1a1a1a;
+            }
+
+            .title { color: #4338ca; }
+            .tagline { color: #555; border-left-color: #4338ca; }
+            .contact-info { color: #555; }
+            .contact-info span::before { background: #4338ca; }
+
+            .section {
+                opacity: 1 !important;
+                transform: none !important;
+                padding: 20px 0;
+                break-inside: avoid;
+            }
+
+            .section-title {
+                color: #1a1a1a;
+                font-size: 1.2rem;
+            }
+
+            .section-title::before { background: #4338ca; }
+
+            .metric-card, .case-card, .stack-item, .onboarding-card, .edu-section {
+                background: white;
+                border-color: #ddd;
+                box-shadow: none;
+            }
+
+            .metric-number { color: #4338ca; }
+            .metric-label { color: #555; }
+            .case-title { color: #4338ca; }
+            .case-item { background: #f8f8f8; border-left-color: #4338ca; }
+            .case-item.result { border-left-color: #b45309; background: #fffbeb; }
+            .case-item-content { color: #333; }
+            .case-item-label { color: #777; }
+            .stack-category { color: #4338ca; }
+            .stack-tools { color: #555; }
+
+            .timeline::before { background: #4338ca; }
+            .timeline-item::before { background: #4338ca; }
+            .timeline-role { color: #1a1a1a; }
+            .timeline-company { color: #b45309; }
+            .timeline-date { color: #777; }
+            .timeline-team { background: #eef2ff; color: #4338ca; }
+            .timeline-desc { color: #555; }
+            .timeline-desc li::before { color: #4338ca; }
+
+            .onboarding-card::before { background: #4338ca; }
+            .onboarding-month { color: #b45309; }
+            .onboarding-content { color: #555; }
+
+            .edu-item { color: #555; border-left-color: #4338ca; }
+            .edu-item strong { color: #1a1a1a; }
+
+            .footer { display: none; }
+
+            .header { padding: 30px 0 20px; }
+
+            a { color: #4338ca; text-decoration: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="name">陈柏宇（Maki）</h1>
+            <p class="title">AI 操盘手 / AI 产品总监</p>
+            <p class="tagline">「不是 AI 评论员，是把 AI Agent 跑成 7×24 数字员工的实战操盘手」</p>
+            <div class="contact-info">
+                <span>+886 0912-560-693</span>
+                <span>bobe0809@gmail.com</span>
+                <span>台湾</span>
+                <span>远程可</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Metrics -->
+    <section class="section" id="metrics">
+        <div class="container">
+            <h2 class="section-title">核心数据</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">15+</div>
+                    <div class="metric-label">年技术背景</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">3</div>
+                    <div class="metric-label">次团队从0搭建（最大30人）</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">40+</div>
+                    <div class="metric-label">AI工具实战</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">108</div>
+                    <div class="metric-label">个AI建站作品</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">92</div>
+                    <div class="metric-label">间组织系统服务中</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Case Studies -->
+    <section class="section" id="cases">
+        <div class="container">
+            <h2 class="section-title">AI 实战案例</h2>
+
+            <!-- Case 1 -->
+            <div class="case-card">
+                <h3 class="case-title">Case 1：AI 驱动 SEO 内容工厂</h3>
+                <div class="case-grid">
+                    <div class="case-item">
+                        <div class="case-item-label">业务问题</div>
+                        <div class="case-item-content">客户网站 Google 搜不到，传统 SEO 一个月产 5 篇文章</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">工具组合</div>
+                        <div class="case-item-content">Claude Code Agent + n8n 工作流 + Cloudflare Pages + Google Search Console API</div>
+                    </div>
+                    <div class="case-item result">
+                        <div class="case-item-label">量化结果</div>
+                        <div class="case-item-content">30 天产出 76 篇 SEO 优化文章，自动发布 + Sitemap 自动更新，人力成本降 90%</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">关键学习</div>
+                        <div class="case-item-content">Prompt 需要分层（标题策略→大纲→正文→SEO meta），Token 成本控制在每篇 $0.15 以内</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="case-card">
+                <h3 class="case-title">Case 2：AI DevOps Agent 商品化</h3>
+                <div class="case-grid">
+                    <div class="case-item">
+                        <div class="case-item-label">业务问题</div>
+                        <div class="case-item-content">运维知识在人脑里，人一走知识就断</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">工具组合</div>
+                        <div class="case-item-content">Claude Code + Obsidian + Python launchd + Telegram Bot + SSH 自动化</div>
+                    </div>
+                    <div class="case-item result">
+                        <div class="case-item-label">量化结果</div>
+                        <div class="case-item-content">打包成「安装包」——双击安装、5 分钟上手、AI 自动巡检/排障/部署，已交付给接手人员直接使用</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">关键学习</div>
+                        <div class="case-item-content">商品化要考虑 Mac/Windows 双平台、文件权限、路径编码、依赖管理</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="case-card">
+                <h3 class="case-title">Case 3：AI 驱动客户开发自动化</h3>
+                <div class="case-grid">
+                    <div class="case-item">
+                        <div class="case-item-label">业务问题</div>
+                        <div class="case-item-content">接案提案效率低，一个案子要花 2 小时写提案+做 Demo</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">工具组合</div>
+                        <div class="case-item-content">Claude Code + Gemini Imagen API + Gmail SMTP + LINE Messaging API</div>
+                    </div>
+                    <div class="case-item result">
+                        <div class="case-item-label">量化结果</div>
+                        <div class="case-item-content">提案流程压缩到 15 分钟（自动生成 300 字提案 + HTML Email + Demo 页面 + 自动寄信），同时追踪 7 个客户回信</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="case-item-label">关键学习</div>
+                        <div class="case-item-content">AI 生成内容需要人审核把关，模板化但客制化</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tool Stack -->
+    <section class="section" id="stack">
+        <div class="container">
+            <h2 class="section-title">AI 工具栈</h2>
+            <div class="stack-grid">
+                <div class="stack-item">
+                    <span class="stack-category">Agent 框架</span>
+                    <span class="stack-tools">Claude Code CLI（日常主力）、Gemini API（图像生成）</span>
+                </div>
+                <div class="stack-item">
+                    <span class="stack-category">自动化</span>
+                    <span class="stack-tools">n8n、Python 排程、GitHub Actions CI/CD</span>
+                </div>
+                <div class="stack-item">
+                    <span class="stack-category">部署</span>
+                    <span class="stack-tools">Docker + AWS + Cloudflare Pages</span>
+                </div>
+                <div class="stack-item">
+                    <span class="stack-category">通讯整合</span>
+                    <span class="stack-tools">LINE Messaging API、Telegram Bot API、Gmail SMTP</span>
+                </div>
+                <div class="stack-item">
+                    <span class="stack-category">数据</span>
+                    <span class="stack-tools">PostgreSQL、Google Search Console API、Google Analytics</span>
+                </div>
+                <div class="stack-item">
+                    <span class="stack-category">前端</span>
+                    <span class="stack-tools">Vue 3、Next.js、React</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title">工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-role">台湾区项目总经理</span>
+                        <span class="timeline-company">SlotMarker（马来西亚博彩集团）</span>
+                        <span class="timeline-team">管理25人</span>
+                        <span class="timeline-date">2025/02 - 2026/04</span>
+                    </div>
+                    <ul class="timeline-desc">
+                        <li>多款老虎机与捕鱼机整体规划、RTP调控、核心机制设计</li>
+                        <li>从0搭建25人团队，导入AI自动化测试提升QA效率40%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-role">高级产品经理</span>
+                        <span class="timeline-company">巨甚（菲律宾）</span>
+                        <span class="timeline-date">2024/05 - 2025/01</span>
+                    </div>
+                    <ul class="timeline-desc">
+                        <li>多款博弈产品0→1完整规划，标准化PRD，开发理解偏差降60%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-role">高级产品经理</span>
+                        <span class="timeline-company">ST（台湾）</span>
+                        <span class="timeline-date">2023/09 - 2024/04</span>
+                    </div>
+                    <ul class="timeline-desc">
+                        <li>博弈游戏Roadmap规划与跨部门整合，团队效率提升30%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-role">公司负责人/CEO</span>
+                        <span class="timeline-company">银月数位顾问（台湾）</span>
+                        <span class="timeline-date">2021/05 - 2023/09</span>
+                    </div>
+                    <ul class="timeline-desc">
+                        <li>自营游戏与系统开发，CityPoker/58Poker/政府系统/银行系统</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-role">产品经理/技术组长</span>
+                        <span class="timeline-company">AG集团（菲律宾）</span>
+                        <span class="timeline-date">2015/11 - 2021/05</span>
+                    </div>
+                    <ul class="timeline-desc">
+                        <li>从Java工程师→技术主管→产品经理，5年后端+6年产品</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onboarding Plan -->
+    <section class="section" id="onboarding">
+        <div class="container">
+            <h2 class="section-title">入职交付计划</h2>
+            <div class="onboarding-grid">
+                <div class="onboarding-card">
+                    <div class="onboarding-month">第 1 月</div>
+                    <div class="onboarding-content">完成广告投放体系诊断 + 产出AI优化方案 + 上线第一个Agent工作流</div>
+                </div>
+                <div class="onboarding-card">
+                    <div class="onboarding-month">第 2 月</div>
+                    <div class="onboarding-content">广告AI自动化初步上线 + 博主采集评分外联系统跑通 + 输出团队AI工具SOP</div>
+                </div>
+                <div class="onboarding-card">
+                    <div class="onboarding-month">第 3 月</div>
+                    <div class="onboarding-content">投放成本降15%+ / 效率提升30%+ / 博主资源库500+ / Agent稳定运行</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section" id="education">
+        <div class="container">
+            <h2 class="section-title">教育背景</h2>
+            <div class="edu-section">
+                <div class="edu-item">
+                    <strong>亚东技术学院</strong>
+                    电子工程学系 四技
+                </div>
+                <div class="edu-item">
+                    <strong>SCJP</strong>
+                    Sun Certified Java Programmer
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <p>陈柏宇（Maki）&mdash; AI 操盘手 / AI 产品总监</p>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Trigger first visible sections immediately
+        window.addEventListener('load', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
