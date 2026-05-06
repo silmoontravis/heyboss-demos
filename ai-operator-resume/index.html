@@ -104,22 +104,33 @@
     background: #e8f0fe;
   }
 
-  .stat-cards {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    margin-top: 20px;
+  .case-card {
+    background: #f7f9fc; border-radius: 8px; padding: 20px 24px;
+    margin-bottom: 20px; border-left: 4px solid #2c6fbb;
   }
-  .stat-card {
-    text-align: center; padding: 16px 8px;
-    background: #f7f9fc; border-radius: 8px;
-    border-top: 3px solid #2c6fbb;
+  .case-card h3 { margin-bottom: 12px; font-size: 15px; }
+  .case-card .case-row { margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
+  .case-card .case-row strong { color: #1a2744; display: inline-block; min-width: 70px; }
+  .case-card .case-lesson { margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e6ed; font-size: 12px; color: #718096; }
+
+  .why-me-list { list-style: none; padding: 0; }
+  .why-me-list li {
+    padding: 12px 16px; margin-bottom: 8px;
+    background: #f7f9fc; border-radius: 6px;
+    border-left: 3px solid #2c6fbb;
+    font-size: 14px;
   }
-  .stat-card .stat-number {
-    font-size: 28px; font-weight: 700; color: #2c6fbb;
-    display: block; margin-bottom: 4px;
+
+  .onboard-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;
   }
-  .stat-card .stat-desc {
-    font-size: 12px; color: #4a5568; line-height: 1.5;
+  .onboard-card {
+    background: #fff; border: 1px solid #e0e6ed; border-radius: 8px;
+    padding: 16px; border-top: 3px solid #2c6fbb;
   }
+  .onboard-card .month { font-size: 20px; font-weight: 700; color: #2c6fbb; margin-bottom: 8px; }
+  .onboard-card ul { padding-left: 16px; font-size: 13px; }
+  .onboard-card li { margin-bottom: 4px; }
 
   @media (max-width: 768px) {
     body { padding: 24px 16px; font-size: 13px; }
@@ -129,8 +140,7 @@
     .header-photo { width: 100px; height: 100px; }
     h1 { font-size: 24px; }
     h2 { font-size: 18px; }
-    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .stat-number { font-size: 28px; }
+    .onboard-grid { grid-template-columns: 1fr; }
     .scrum-grid { grid-template-columns: 1fr !important; }
     table { font-size: 12px; }
     th, td { padding: 8px 10px; }
@@ -143,9 +153,7 @@
 
   @media (max-width: 480px) {
     body { padding: 16px 12px; }
-    .stat-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .stat-card { padding: 12px; }
-    .stat-number { font-size: 24px; }
+    .onboard-grid { grid-template-columns: 1fr; }
     h1 { font-size: 20px; }
     .header-photo { width: 80px; height: 80px; }
     .section-alt { margin: 0 -12px; padding: 16px 12px; }
@@ -159,357 +167,176 @@
     table { page-break-inside: avoid; font-size: 11px; }
     .header-photo { width: 80px; height: 80px; }
     .lang-switch { display: none; }
-    .stat-cards { page-break-inside: avoid; }
     ul { page-break-inside: avoid; }
     blockquote { page-break-inside: avoid; }
     .header { page-break-inside: avoid; }
-    div[style*="grid"] { page-break-inside: avoid; }
+    .onboard-grid { page-break-inside: avoid; }
+    .case-card { page-break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <img class="header-photo" src="data:image/jpeg;base64,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" alt="陈柏宇照片">
+  <img class="header-photo" src="data:image/jpeg;base64,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" alt="陈柏宇照片">
   <div class="header-info">
-    <h1><span data-sc="陈柏宇（Maki）" data-tc="陳柏宇（Maki）" data-en="Po-Yu Chen (Maki)">陈柏宇（Maki）</span></h1>
-    <div class="header-title"><span data-sc="AI 操盘手 / AI 产品总监" data-tc="AI 操盤手 / AI 產品總監" data-en="AI Operator / AI Product Director">AI 操盘手 / AI 产品总监</span></div>
+    <h1>陈柏宇（Maki）</h1>
+    <div class="header-title">用 AI Agent 把重复性业务流程自动化，让团队专注高价值工作</div>
     <div class="header-contact" style="display:flex;flex-direction:column;gap:6px;margin-top:8px;font-size:14px">
-      <div>+886 0912-560-693 ｜ +63 0906-528-6769</div>
-      <div>bobe0809@gmail.com</div>
-      <div style="color:#666"><span data-sc="台湾 ｜ 远程工作 ｜ 39岁" data-tc="台灣 ｜ 遠端工作 ｜ 39歲" data-en="Taiwan ｜ Remote Work ｜ Age 39">台湾 ｜ 远程工作 ｜ 39岁</span></div>
+      <div>+886 0912-560-693 ｜ bobe0809@gmail.com</div>
+      <div style="color:#666">台湾 ｜ 可远程 ｜ 39岁 ｜ 16年技术+产品经验</div>
     </div>
-  </div>
-  <div class="lang-switch">
-    <button onclick="setLang('sc')" id="btn-sc" class="active">简中</button>
-    <button onclick="setLang('tc')" id="btn-tc">繁中</button>
-    <button onclick="setLang('en')" id="btn-en">EN</button>
   </div>
 </div>
 
-<h2><span data-sc="个人简介" data-tc="個人簡介" data-en="Profile Summary">个人简介</span></h2>
-<div class="summary">
-  <p>我的目标不是管产品，而是建 AI 产线。拥有 16 年技术+产品复合经验，3 次团队从 0 搭建（最大 30 人），40+ AI 工具实战经验。</p>
-  <p>核心能力：把 AI Agent 跑成 7×24 不停转的「数字员工」——从 SEO 内容工厂（30 天 76 篇自动产出）、DevOps 运维 Agent（打包商品化交付）、到客户开发自动化（提案+Demo+邮件 15 分钟完成），每一个都是跑过完整业务流程、产出量化结果的实战案例。</p>
-  <p>掌握 Claude Code / Gemini API / n8n 自动化 / Docker / CI-CD 全链路 Agent 搭建能力，不是装好工具就完事的「AI 装机员」，而是能从业务痛点出发、设计 Skills、串接工作流、控制 Token 成本、让 Agent 稳定产出的操盘手。</p>
-</div>
-<div class="stat-cards">
-  <div class="stat-card">
-    <span class="stat-number"><span data-sc="16+" data-tc="16+" data-en="16+">16+</span></span>
-    <span class="stat-desc"><span data-sc="年技术+产品复合经验" data-tc="年技術+產品複合經驗" data-en="Years Tech + Product Experience">年技术+产品复合经验</span></span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number"><span data-sc="3 次" data-tc="3 次" data-en="3x">3 次</span></span>
-    <span class="stat-desc"><span data-sc="从零搭建团队（最大 30 人）" data-tc="從零搭建團隊（最大 30 人）" data-en="Teams Built from Scratch (up to 30)">从零搭建团队（最大 30 人）</span></span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number"><span data-sc="多款" data-tc="多款" data-en="Multiple">多款</span></span>
-    <span class="stat-desc"><span data-sc="老虎机/棋牌已上线运营" data-tc="老虎機/棋牌已上線營運" data-en="Slots/Card Games Live in Production">老虎机/棋牌已上线运营</span></span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number"><span data-sc="AI 产线" data-tc="AI 產線" data-en="AI Pipeline">AI 产线</span></span>
-    <span class="stat-desc"><span data-sc="40+ 个专业 AI Skill" data-tc="40+ 個專業 AI Skill" data-en="40+ Professional AI Skills">40+ 个专业 AI Skill</span></span>
-  </div>
-</div>
+<h2>为什么是我？</h2>
+<ul class="why-me-list">
+  <li><strong>已验证的 AI 自动化落地能力</strong> — 不是会装工具，而是已经跑通完整业务流：从 SEO 内容自动产出、到客户提案自动化、到 DevOps 运维 Agent，每个都有量化结果。</li>
+  <li><strong>技术出身，能自己动手</strong> — 8 年 Java 后端 + 7 年产品管理。我不是写 PPT 让别人做的人，Claude Code + n8n 是我日常高频使用的工具，其他按需学习。</li>
+  <li><strong>老实说</strong> — 我不是算法工程师，不写模型。但我知道怎么把现成模型串成业务流，控制好 Token 成本，让 Agent 稳定产出而不是跑一次就挂。</li>
+</ul>
 
 <h2>AI 实战案例</h2>
 
-<div class="job">
+<div class="case-card">
+  <h3>案例一：SEO 内容自动产出系统</h3>
+  <div class="case-row"><strong>问题：</strong>客户网站 Google 搜不到，传统做法月产 5 篇文章，人工成本高效果慢。</div>
+  <div class="case-row"><strong>我做了什么：</strong>用 Claude Code Agent 做内容生成核心，n8n 串关键词研究 + 文章生成 + 自动发布到 Cloudflare Pages，GSC API 追踪收录情况。整套流程从选题到发布全自动，我只做最后的质量抽检。</div>
+  <div class="case-row"><strong>结果：</strong>30 天产出 76 篇文章并自动发布。单篇 Token 成本 $0.15。人力从「一个编辑全职写」变成「我每天花 15 分钟抽检」。</div>
+  <div class="case-lesson">踩过的坑：前 10 篇文章质量参差不齐，后来发现必须分层 Prompt（大纲一层、段落一层、SEO 优化一层），一次性生成长文效果很差。</div>
+</div>
+
+<div class="case-card">
+  <h3>案例二：客户开发自动化（提案 + Demo + 邮件）</h3>
+  <div class="case-row"><strong>问题：</strong>做 B2B 业务开发，一个提案从研究客户、写方案、做 Demo 到发邮件，原本要 2 小时。同时追踪多客户根本忙不过来。</div>
+  <div class="case-row"><strong>我做了什么：</strong>Claude Code 分析客户网站生成定制提案，Gemini Imagen API 生成 Demo 视觉稿，Gmail SMTP 自动发送。我只需要输入客户网址，15 分钟后收到完整提案供审核。</div>
+  <div class="case-row"><strong>结果：</strong>提案时间从 2 小时压缩到 15 分钟（含我审核修改的时间）。同时追踪 7 个客户不再手忙脚乱。</div>
+  <div class="case-lesson">教训：AI 生成的提案不能直接发，客户能感觉到。必须人审一遍，加入对客户业务的具体观察，才有诚意。「模板化但客制化」是关键。</div>
+</div>
+
+<div class="case-card">
+  <h3>案例三：DevOps 运维 Agent 商品化</h3>
+  <div class="case-row"><strong>问题：</strong>团队运维知识全在资深工程师脑子里，人一走知识就断。新人上手要 3 个月。</div>
+  <div class="case-row"><strong>我做了什么：</strong>把运维流程写进 Claude Code 的 Skill 系统（Obsidian 知识库 + Python 脚本 + SSH 自动连接），打包成安装包。双击安装，5 分钟就能用 AI 辅助巡检、排障、部署。</div>
+  <div class="case-row"><strong>结果：</strong>新人上手从 3 个月缩短到 1 周。运维知识不再依赖个人，沉淀在系统里。</div>
+  <div class="case-lesson">最难的不是 AI 部分，是 Mac/Windows 双平台兼容、文件权限、依赖管理这些工程细节。Agent 好写，产品化很难。</div>
+</div>
+
+<div class="section-alt">
+<h2>入职后我会做什么</h2>
+<div class="onboard-grid">
+  <div class="onboard-card">
+    <div class="month">第 1 个月</div>
+    <ul>
+      <li>摸清现有业务流程和团队痛点</li>
+      <li>找到 1-2 个「重复性高、规则明确」的流程，搭建第一个 AI Agent 跑通验证</li>
+      <li>产出第一个可量化的效率提升数据</li>
+    </ul>
+  </div>
+  <div class="onboard-card">
+    <div class="month">第 2 个月</div>
+    <ul>
+      <li>针对广告投放建立 AI 辅助优化流程（素材生成 + A/B 测试自动化 + 数据回收）</li>
+      <li>启动 KOL 外联自动化：批量研究 + 定制化触达 + 跟进追踪</li>
+      <li>建立 ROI 追踪机制，用数据说话</li>
+    </ul>
+  </div>
+  <div class="onboard-card">
+    <div class="month">第 3 个月</div>
+    <ul>
+      <li>Agent 系统稳定运行，开始优化和扩展</li>
+      <li>培训团队成员使用 AI 工具，降低对我个人的依赖</li>
+      <li>产出完整的 AI 工作流 SOP，确保可持续</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="section-alt">
+<h2>工作经历</h2>
+
+<div class="job" style="page-break-inside:avoid">
   <div class="job-header">
-    <div class="job-title">案例一：AI 驱动 SEO 内容工厂</div>
+    <div class="job-title">台湾区项目总经理</div>
+    <div class="job-company">马来西亚博彩集团（SlotMarker）</div>
+    <div class="job-date">2025/02 - 2026/04 ｜ 管理 25 人</div>
   </div>
   <ul>
-    <li><strong>业务问题：</strong>客户网站 Google 搜不到，传统 SEO 月产 5 篇</li>
-    <li><strong>工具组合：</strong>Claude Code Agent + n8n + Cloudflare Pages + GSC API</li>
-    <li><strong>量化结果：</strong>30 天 76 篇 SEO 文章自动产出发布，人力成本降 90%</li>
-    <li><strong>关键学习：</strong>Prompt 分层策略，Token 成本控制每篇 $0.15</li>
+    <li>从零搭建 25 人产品+技术团队，推动多款老虎机/捕鱼机产品上线</li>
+    <li>导入 AI Agent 产线：SEO 自动化、DevOps Agent、客户提案自动化，效率提升实测数据见上方案例</li>
+    <li>搭建自动化 QA 框架（Python/Node.js），线上回归 Bug 率降低 60%</li>
   </ul>
 </div>
 
-<div class="job">
+<div class="job" style="page-break-inside:avoid">
   <div class="job-header">
-    <div class="job-title">案例二：AI DevOps Agent 商品化</div>
+    <div class="job-title">高级产品经理</div>
+    <div class="job-company">巨甚（菲律宾）+ ST（台湾）</div>
+    <div class="job-date">2023/09 - 2025/01</div>
   </div>
   <ul>
-    <li><strong>业务问题：</strong>运维知识在人脑，人走知识断</li>
-    <li><strong>工具组合：</strong>Claude Code + Obsidian + Python + Telegram Bot + SSH</li>
-    <li><strong>量化结果：</strong>打包成安装包，双击安装 5 分钟上手，AI 自动巡检排障部署</li>
-    <li><strong>关键学习：</strong>Mac/Windows 双平台兼容、文件权限、依赖管理</li>
+    <li>负责多款博弈产品 0→1 规划与落地，建立标准化 PRD 流程，开发理解偏差降低 60%</li>
+    <li>亲手设计老虎机 RTP 模型与水池机制，不只是「提需求的 PM」</li>
   </ul>
 </div>
 
-<div class="job">
+<div class="job" style="page-break-inside:avoid">
   <div class="job-header">
-    <div class="job-title">案例三：AI 驱动客户开发自动化</div>
+    <div class="job-title">公司负责人 / CEO</div>
+    <div class="job-company">银月数位顾问（台湾）</div>
+    <div class="job-date">2021/05 - 2023/09</div>
   </div>
   <ul>
-    <li><strong>业务问题：</strong>提案效率低，一案 2 小时</li>
-    <li><strong>工具组合：</strong>Claude Code + Gemini Imagen API + Gmail SMTP + LINE API</li>
-    <li><strong>量化结果：</strong>提案压缩到 15 分钟（自动生成提案+Email+Demo+寄信），同时追踪 7 客户</li>
-    <li><strong>关键学习：</strong>AI 生成需人审核，模板化但客制化</li>
+    <li>自营游戏与系统开发公司，交付棋牌系统（CityPoker、58Poker）及多个企业级系统（银行、政府）</li>
+    <li>从拉客户、写提案、管团队到交付运维，全流程自己扛过一轮</li>
   </ul>
 </div>
 
-<div class="section-alt" style="background:#eef3fb">
-<h2><span data-sc="我能带给公司的优势" data-tc="我能帶給公司的優勢" data-en="What I Bring to the Table">我能带给公司的优势</span></h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px">
-  <div style="background:#fff;padding:20px;border-radius:8px;border-left:3px solid #2c6fbb">
-    <strong><span data-sc="现成团队资源" data-tc="現成團隊資源" data-en="Ready-Made Team Resources">现成团队资源</span></strong>
-    <p style="color:#555;margin-top:8px;font-size:13px"><span data-sc="拥有成熟团队网络，可快速招齐产品、前端、后端、QA、美术等全职能角色，大幅缩短团队搭建周期。" data-tc="擁有成熟團隊網絡，可快速招齊產品、前端、後端、QA、美術等全職能角色，大幅縮短團隊搭建週期。" data-en="Established team network — can quickly recruit product, frontend, backend, QA, and art talent, dramatically shortening team-building time.">拥有成熟团队网络，可快速招齐产品、前端、后端、QA、美术等全职能角色，大幅缩短团队搭建周期。</span></p>
+<div class="job" style="page-break-inside:avoid">
+  <div class="job-header">
+    <div class="job-title">产品经理 / 技术组长 / 资深 Java 工程师</div>
+    <div class="job-company">AG 集团（菲律宾）</div>
+    <div class="job-date">2015/11 - 2021/05</div>
   </div>
-  <div style="background:#fff;padding:20px;border-radius:8px;border-left:3px solid #2c6fbb">
-    <strong><span data-sc="AI 产线系统" data-tc="AI 產線系統" data-en="AI Pipeline System">AI 产线系统</span></strong>
-    <p style="color:#555;margin-top:8px;font-size:13px"><span data-sc="已建立完整的 AI 工厂体系（40+ 专业 Skill），覆盖开发、测试、素材、部署全流程，能将传统开发效率提升 3-5 倍。" data-tc="已建立完整的 AI 工廠體系（40+ 專業 Skill），覆蓋開發、測試、素材、部署全流程，能將傳統開發效率提升 3-5 倍。" data-en="Built a complete AI factory system (40+ professional Skills) covering development, testing, asset production, and deployment — boosting efficiency 3-5x.">已建立完整的 AI 工厂体系（40+ 专业 Skill），覆盖开发、测试、素材、部署全流程，能将传统开发效率提升 3-5 倍。</span></p>
+  <ul>
+    <li>从 Java 工程师一路成长到管理 12 人团队，完成「技术→管理→产品」的转型</li>
+    <li>5 年 Java 后端开发经验，能读懂代码、追踪数据流、精准评估技术可行性</li>
+  </ul>
+</div>
+
+<div class="job" style="page-break-inside:avoid">
+  <div class="job-header">
+    <div class="job-title">Java 工程师</div>
+    <div class="job-company">台湾金融/电信/政府项目</div>
+    <div class="job-date">2007 - 2015（约 8 年）</div>
   </div>
-  <div style="background:#fff;padding:20px;border-radius:8px;border-left:3px solid #2c6fbb">
-    <strong><span data-sc="核心算法经验" data-tc="核心算法經驗" data-en="Core Algorithm Experience">核心算法经验</span></strong>
-    <p style="color:#555;margin-top:8px;font-size:13px"><span data-sc="手上拥有实战验证的老虎机与捕鱼机核心算法（RTP、水池、波动控制），可直接应用于新产品，大幅缩短上线周期。" data-tc="手上擁有實戰驗證的老虎機與捕魚機核心算法（RTP、水池、波動控制），可直接應用於新產品，大幅縮短上線週期。" data-en="Battle-tested slot and fishing game core algorithms (RTP, pool, volatility control) ready to deploy in new products, dramatically shortening time-to-market.">手上拥有实战验证的老虎机与捕鱼机核心算法（RTP、水池、波动控制），可直接应用于新产品，大幅缩短上线周期。</span></p>
-  </div>
+  <ul>
+    <li>中国信托、永丰商银、远通集团、台湾大、健保案、军方系统</li>
+  </ul>
 </div>
 </div>
 
-<div style="margin-top:24px">
-<h2><span data-sc="AI 产线系统详情" data-tc="AI 產線系統詳情" data-en="AI Pipeline System Details">AI 产线系统详情</span></h2>
-<p style="color:#555;margin-bottom:12px;font-size:13px"><span data-sc="这不是「会用 ChatGPT」——这是一套正在实际运作的 AI 工厂：" data-tc="這不是「會用 ChatGPT」——這是一套正在實際運作的 AI 工廠：" data-en="This isn't 'knowing ChatGPT' — this is a fully operational AI factory:">这不是「会用 ChatGPT」——这是一套正在实际运作的 AI 工厂：</span></p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px">
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="双 AI Agent 协作" data-tc="雙 AI Agent 協作" data-en="Dual AI Agents">双 AI Agent 协作</span></strong><br><span style="color:#666;font-size:12px" data-sc="两台 Claude Code 同时工作" data-tc="兩台 Claude Code 同時工作" data-en="Two Claude Code instances working simultaneously">两台 Claude Code 同时工作</span></div>
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="40+ AI Skill" data-tc="40+ AI Skill" data-en="40+ AI Skills">40+ AI Skill</span></strong><br><span style="color:#666;font-size:12px" data-sc="QA、音效、美术、SEO、部署" data-tc="QA、音效、美術、SEO、部署" data-en="QA, SFX, Art, SEO, Deployment">QA、音效、美术、SEO、部署</span></div>
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="AI QA 体系" data-tc="AI QA 體系" data-en="AI QA System">AI QA 体系</span></strong><br><span style="color:#666;font-size:12px" data-sc="RTP 统计验证 + 回归测试" data-tc="RTP 統計驗證 + 回歸測試" data-en="RTP Validation + Regression Testing">RTP 统计验证 + 回归测试</span></div>
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="AI 素材产线" data-tc="AI 素材產線" data-en="AI Asset Pipeline">AI 素材产线</span></strong><br><span style="color:#666;font-size:12px" data-sc="美术 + 音效 + BGM 一条龙" data-tc="美術 + 音效 + BGM 一條龍" data-en="Art + SFX + BGM End-to-End">美术 + 音效 + BGM 一条龙</span></div>
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="知识库系统" data-tc="知識庫系統" data-en="Knowledge Base">知识库系统</span></strong><br><span style="color:#666;font-size:12px" data-sc="Second Brain + 跨设备同步" data-tc="Second Brain + 跨裝置同步" data-en="Second Brain + Cross-Device Sync">Second Brain + 跨设备同步</span></div>
-  <div style="background:#f7f9fc;padding:14px;border-radius:8px;border-left:3px solid #2c6fbb"><strong><span data-sc="CI/CD 自动部署" data-tc="CI/CD 自動部署" data-en="CI/CD Auto Deploy">CI/CD 自动部署</span></strong><br><span style="color:#666;font-size:12px" data-sc="Jenkins + Docker + 2 分钟上线" data-tc="Jenkins + Docker + 2 分鐘上線" data-en="Jenkins + Docker + 2 min to Live">Jenkins + Docker + 2 分钟上线</span></div>
-</div>
-</div>
-
-<h2 style="margin-top:28px"><span data-sc="成功上线产品" data-tc="成功上線產品" data-en="Successfully Launched Products">成功上线产品</span></h2>
+<h2>日常工具栈</h2>
 <table>
-  <thead><tr><th><span data-sc="产品" data-tc="產品" data-en="Product">产品</span></th><th><span data-sc="类型" data-tc="類型" data-en="Type">类型</span></th><th><span data-sc="角色" data-tc="角色" data-en="Role">角色</span></th><th><span data-sc="状态" data-tc="狀態" data-en="Status">状态</span></th></tr></thead>
+  <thead><tr><th>类别</th><th>说明</th></tr></thead>
   <tbody>
-    <tr><td><span data-sc="老虎机产品线（多款）" data-tc="老虎機產品線（多款）" data-en="Slot Machine Product Line (Multiple)">老虎机产品线（多款）</span></td><td>Slot</td><td><span data-sc="项目总经理" data-tc="專案總經理" data-en="General Manager">项目总经理</span></td><td><span data-sc="✅ 已上线" data-tc="✅ 已上線" data-en="✅ Live">✅ 已上线</span></td></tr>
-    <tr><td><span data-sc="捕鱼机系列（多款）" data-tc="捕魚機系列（多款）" data-en="Fishing Game Series (Multiple)">捕鱼机系列（多款）</span></td><td><span data-sc="捕鱼" data-tc="捕魚" data-en="Fishing">捕鱼</span></td><td><span data-sc="项目总经理" data-tc="專案總經理" data-en="General Manager">项目总经理</span></td><td><span data-sc="✅ 已上线" data-tc="✅ 已上線" data-en="✅ Live">✅ 已上线</span></td></tr>
-    <tr><td>CityPoker</td><td><span data-sc="棋牌" data-tc="棋牌" data-en="Card Game">棋牌</span></td><td><span data-sc="产品负责人" data-tc="產品負責人" data-en="Product Owner">产品负责人</span></td><td><span data-sc="✅ 运行中" data-tc="✅ 運行中" data-en="✅ Running">✅ 运行中</span></td></tr>
-    <tr><td>58Poker</td><td><span data-sc="棋牌" data-tc="棋牌" data-en="Card Game">棋牌</span></td><td><span data-sc="产品负责人" data-tc="產品負責人" data-en="Product Owner">产品负责人</span></td><td><span data-sc="✅ 运行中" data-tc="✅ 運行中" data-en="✅ Running">✅ 运行中</span></td></tr>
-    <tr><td><span data-sc="博弈产品（巨甚/ST）" data-tc="博弈產品（巨甚/ST）" data-en="Gaming Products (Jushen/ST)">博弈产品（巨甚/ST）</span></td><td><span data-sc="Slot/棋牌" data-tc="Slot/棋牌" data-en="Slot/Card">Slot/棋牌</span></td><td><span data-sc="高级产品经理" data-tc="高級產品經理" data-en="Senior PM">高级产品经理</span></td><td><span data-sc="✅ 已上线" data-tc="✅ 已上線" data-en="✅ Live">✅ 已上线</span></td></tr>
-    <tr><td><span data-sc="AI 建站产线（100+ 品牌网站）" data-tc="AI 建站產線（100+ 品牌網站）" data-en="AI Website Pipeline (100+ Brand Sites)">AI 建站产线（100+ 品牌网站）</span></td><td><span data-sc="AI 产线" data-tc="AI 產線" data-en="AI Pipeline">AI 产线</span></td><td><span data-sc="系统架构师" data-tc="系統架構師" data-en="System Architect">系统架构师</span></td><td><span data-sc="✅ 运行中" data-tc="✅ 運行中" data-en="✅ Running">✅ 运行中</span></td></tr>
+    <tr><td>AI Agent 核心</td><td>Claude Code CLI（日常主力）、n8n（工作流编排）</td></tr>
+    <tr><td>按需使用</td><td>Gemini API、ElevenLabs、Midjourney — 看任务选工具，不追求数量</td></tr>
+    <tr><td>部署/运维</td><td>Docker、AWS、Cloudflare Pages、Jenkins CI/CD</td></tr>
+    <tr><td>开发语言</td><td>Node.js/TypeScript（现在主力）、Java（过去 8 年）、Python（脚本/自动化）</td></tr>
   </tbody>
 </table>
 
 <div class="section-alt">
-<h2><span data-sc="技术背景优势" data-tc="技術背景優勢" data-en="Technical Background">技术背景优势</span></h2>
-<p style="margin-bottom: 12px; color: #4a5568;"><span data-sc="多数产品经理只能写需求文档，我能直接深入技术层：" data-tc="多數產品經理只能寫需求文件，我能直接深入技術層：" data-en="While most product managers can only write requirement documents, I can dive directly into the technical layer:">多数产品经理只能写需求文档，我能直接深入技术层：</span></p>
-<ul class="tech-list">
-  <li><span data-sc="RTP 数学建模：亲自设计老虎机 RTP 模型、水池机制、赔率结构与波动控制算法，不是「提需求给数值策划」，而是「自己就是数值策划」" data-tc="RTP 數學建模：親自設計老虎機 RTP 模型、水池機制、賠率結構與波動控制演算法，不是「提需求給數值策劃」，而是「自己就是數值策劃」" data-en="RTP Mathematical Modeling: Personally designed slot RTP models, pool mechanisms, payout structures, and volatility control algorithms — not just 'handing requirements to a math designer', but being the math designer"><strong>RTP 数学建模：</strong>亲自设计老虎机 RTP 模型、水池机制、赔率结构与波动控制算法，不是「提需求给数值策划」，而是「自己就是数值策划」</span></li>
-  <li><span data-sc="代码级沟通：5 年 Java 后端开发经验，能阅读游戏引擎代码、追踪数据流、精准评估技术可行性与开发工时，与工程团队零翻译成本" data-tc="程式碼級溝通：5 年 Java 後端開發經驗，能閱讀遊戲引擎程式碼、追蹤資料流、精準評估技術可行性與開發工時，與工程團隊零翻譯成本" data-en="Code-Level Communication: 5 years of Java backend development experience, able to read game engine code, trace data flows, accurately assess technical feasibility and development effort — zero translation cost with engineering teams"><strong>代码级沟通：</strong>5 年 Java 后端开发经验，能阅读游戏引擎代码、追踪数据流、精准评估技术可行性与开发工时，与工程团队零翻译成本</span></li>
-  <li><span data-sc="自动化测试体系：亲手搭建 Python/Node.js 自动化 QA 框架，覆盖 API 正确性、RTP 统计验证、回归测试，不依赖 QA 团队也能保证质量" data-tc="自動化測試體系：親手搭建 Python/Node.js 自動化 QA 框架，涵蓋 API 正確性、RTP 統計驗證、回歸測試，不依賴 QA 團隊也能保證品質" data-en="Automated Testing: Built Python/Node.js automated QA frameworks covering API correctness, RTP statistical validation, and regression testing — ensuring quality without depending on a QA team"><strong>自动化测试体系：</strong>亲手搭建 Python/Node.js 自动化 QA 框架，覆盖 API 正确性、RTP 统计验证、回归测试，不依赖 QA 团队也能保证质量</span></li>
-  <li><span data-sc="技术风险预判：能在需求阶段就识别技术瓶颈（并发、数据一致性、架构扩展性），避免开发中途踩坑" data-tc="技術風險預判：能在需求階段就識別技術瓶頸（並發、資料一致性、架構擴展性），避免開發中途踩坑" data-en="Technical Risk Assessment: Able to identify technical bottlenecks (concurrency, data consistency, architecture scalability) at the requirements stage, preventing mid-development pitfalls"><strong>技术风险预判：</strong>能在需求阶段就识别技术瓶颈（并发、数据一致性、架构扩展性），避免开发中途踩坑</span></li>
-  <li><span data-sc="DevOps 理解：熟悉 CI/CD、Docker、Jenkins 部署流程，能评估从开发到上线的完整技术链路" data-tc="DevOps 理解：熟悉 CI/CD、Docker、Jenkins 部署流程，能評估從開發到上線的完整技術鏈路" data-en="DevOps Understanding: Familiar with CI/CD, Docker, and Jenkins deployment workflows, able to evaluate the full technical pipeline from development to production"><strong>DevOps 理解：</strong>熟悉 CI/CD、Docker、Jenkins 部署流程，能评估从开发到上线的完整技术链路</span></li>
-</ul>
-<blockquote><span data-sc="这意味着：我做产品决策时，不只考虑「用户要什么」，还能同时考虑「技术能不能做、要多久、风险在哪」。" data-tc="這意味著：我做產品決策時，不只考慮「使用者要什麼」，還能同時考慮「技術能不能做、要多久、風險在哪」。" data-en="This means: when making product decisions, I consider not only 'what users want', but also 'whether it's technically feasible, how long it takes, and where the risks lie'.">这意味着：我做产品决策时，不只考虑「用户要什么」，还能同时考虑「技术能不能做、要多久、风险在哪」。</span></blockquote>
-</div>
-
-<div class="section-alt">
-<h2 style="page-break-before:always"><span data-sc="工作经历" data-tc="工作經歷" data-en="Work Experience">工作经历</span></h2>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="台湾区项目总经理" data-tc="台灣區專案總經理" data-en="General Manager, Taiwan Operations">台湾区项目总经理</span></div>
-    <div class="job-company"><span data-sc="马来西亚博彩集团（SlotMarker）" data-tc="馬來西亞博彩集團（SlotMarker）" data-en="Malaysian Gaming Group (SlotMarker)">马来西亚博彩集团（SlotMarker）</span></div>
-    <div class="job-date"><span data-sc="2025/02 - 2026/04 ｜ 管理 25 人" data-tc="2025/02 - 2026/04 ｜ 管理 25 人" data-en="2025/02 - 2026/04 ｜ Team of 25">2025/02 - 2026/04 ｜ 管理 25 人</span></div>
-  </div>
-  <p><span data-sc="负责多款老虎机与捕鱼机产品的整体规划与团队搭建，从零组建产品团队并推动多条产品线同步落地。" data-tc="負責多款老虎機與捕魚機產品的整體規劃與團隊搭建，從零組建產品團隊並推動多條產品線同步落地。" data-en="Responsible for overall planning and team building of multiple slot and fishing game products, assembling the product team from scratch and driving parallel product line launches.">负责多款老虎机与捕鱼机产品的整体规划与团队搭建，从零组建产品团队并推动多条产品线同步落地。</span></p>
-  <div class="job-sub"><span data-sc="产品与数值设计" data-tc="產品與數值設計" data-en="Product & Math Design">产品与数值设计</span></div>
-  <ul>
-    <li><span data-sc="主导老虎机与捕鱼机核心机制设计：RTP 调控、击杀率分层、波动控制、特殊道具触发逻辑" data-tc="主導老虎機與捕魚機核心機制設計：RTP 調控、擊殺率分層、波動控制、特殊道具觸發邏輯" data-en="Led core mechanism design for slots and fishing games: RTP tuning, kill rate tiering, volatility control, and special item trigger logic">主导老虎机与捕鱼机核心机制设计：RTP 调控、击杀率分层、波动控制、特殊道具触发逻辑</span></li>
-    <li><span data-sc="设计高/中/低波动产品矩阵，帮助品牌方建立差异化产品定位" data-tc="設計高/中/低波動產品矩陣，幫助品牌方建立差異化產品定位" data-en="Designed high/medium/low volatility product matrix, helping brand partners establish differentiated product positioning">设计高/中/低波动产品矩阵，帮助品牌方建立差异化产品定位</span></li>
-    <li><span data-sc="规划捕鱼机倍率分层、保底机制与穿甲概念，平衡玩家体验与平台收益" data-tc="規劃捕魚機倍率分層、保底機制與穿甲概念，平衡玩家體驗與平台收益" data-en="Planned fishing game multiplier tiering, guaranteed payout mechanisms, and armor-piercing concepts, balancing player experience with platform revenue">规划捕鱼机倍率分层、保底机制与穿甲概念，平衡玩家体验与平台收益</span></li>
-  </ul>
-  <div class="job-sub"><span data-sc="团队建设与管理" data-tc="團隊建設與管理" data-en="Team Building & Management">团队建设与管理</span></div>
-  <ul>
-    <li><span data-sc="从 0 搭建 25 人团队：职位规划、JD 撰写、面试评估、人员配置一手包办" data-tc="從 0 搭建 25 人團隊：職位規劃、JD 撰寫、面試評估、人員配置一手包辦" data-en="Built a 25-person team from scratch: position planning, JD writing, interview assessment, and staffing — all handled personally">从 0 搭建 25 人团队：职位规划、JD 撰写、面试评估、人员配置一手包办</span></li>
-    <li><span data-sc="同时管理多条产品线，横跨前端、后端、QA、企划，明确里程碑与验收标准" data-tc="同時管理多條產品線，橫跨前端、後端、QA、企劃，明確里程碑與驗收標準" data-en="Managed multiple product lines simultaneously across frontend, backend, QA, and planning teams with clear milestones and acceptance criteria">同时管理多条产品线，横跨前端、后端、QA、企划，明确里程碑与验收标准</span></li>
-    <li><span data-sc="培养新进 PM/QA，建立标准化工作流程与思考框架" data-tc="培養新進 PM/QA，建立標準化工作流程與思考框架" data-en="Mentored new PM/QA hires, establishing standardized workflows and thinking frameworks">培养新进 PM/QA，建立标准化工作流程与思考框架</span></li>
-  </ul>
-  <div class="job-sub"><span data-sc="效率与质量提升" data-tc="效率與品質提升" data-en="Efficiency & Quality Improvement">效率与质量提升</span></div>
-  <ul>
-    <li><span data-sc="导入 Python/Node.js 自动化测试，建立可视化 Dashboard，QA 效率提升 40%" data-tc="導入 Python/Node.js 自動化測試，建立可視化 Dashboard，QA 效率提升 40%" data-en="Introduced Python/Node.js automated testing with visual Dashboard, improving QA efficiency by 40%">导入 Python/Node.js 自动化测试，建立可视化 Dashboard，QA 效率提升 40%</span></li>
-    <li><span data-sc="优化版本验收流程，线上回归 Bug 率降低 60%" data-tc="優化版本驗收流程，線上回歸 Bug 率降低 60%" data-en="Optimized version acceptance process, reducing production regression bug rate by 60%">优化版本验收流程，线上回归 Bug 率降低 60%</span></li>
-    <li><span data-sc="搭建 AI Agent 产线（Claude Code + n8n），实现 SEO 内容自动产出、DevOps 自动巡检、客户提案自动化，效率提升 5-10 倍" data-tc="搭建 AI Agent 產線（Claude Code + n8n），實現 SEO 內容自動產出、DevOps 自動巡檢、客戶提案自動化，效率提升 5-10 倍" data-en="Built AI Agent pipeline (Claude Code + n8n) for automated SEO content, DevOps monitoring, and client proposal automation, improving efficiency 5-10x">搭建 AI Agent 产线（Claude Code + n8n），实现 SEO 内容自动产出、DevOps 自动巡检、客户提案自动化，效率提升 5-10 倍</span></li>
-  </ul>
-  <div class="job-sub"><span data-sc="跨国协作" data-tc="跨國協作" data-en="Cross-Border Collaboration">跨国协作</span></div>
-  <ul>
-    <li><span data-sc="担任品牌方与技术端桥梁，将模糊需求转化为可执行规格" data-tc="擔任品牌方與技術端橋梁，將模糊需求轉化為可執行規格" data-en="Served as the bridge between brand partners and technical teams, translating ambiguous requirements into executable specifications">担任品牌方与技术端桥梁，将模糊需求转化为可执行规格</span></li>
-    <li><span data-sc="管理台湾与海外团队的远程协作，确保多时区项目如期交付" data-tc="管理台灣與海外團隊的遠端協作，確保多時區專案如期交付" data-en="Managed remote collaboration between Taiwan and overseas teams, ensuring on-time delivery across multiple time zones">管理台湾与海外团队的远程协作，确保多时区项目如期交付</span></li>
-  </ul>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="高级产品经理" data-tc="高級產品經理" data-en="Senior Product Manager">高级产品经理</span></div>
-    <div class="job-company"><span data-sc="巨甚（菲律宾）" data-tc="巨甚（菲律賓）" data-en="Jushen (Philippines)">巨甚（菲律宾）</span></div>
-    <div class="job-date"><span data-sc="2024/05 - 2025/01" data-tc="2024/05 - 2025/01" data-en="2024/05 - 2025/01">2024/05 - 2025/01</span></div>
-  </div>
-  <p><span data-sc="负责多款博弈产品从 0→1 的完整产品规划与落地执行。" data-tc="負責多款博弈產品從 0→1 的完整產品規劃與落地執行。" data-en="Responsible for complete product planning and execution of multiple gaming products from 0 to 1.">负责多款博弈产品从 0→1 的完整产品规划与落地执行。</span></p>
-  <ul>
-    <li><span data-sc="主导需求访谈、功能定义、流程设计与 MVP 拆解，产出标准化 PRD" data-tc="主導需求訪談、功能定義、流程設計與 MVP 拆解，產出標準化 PRD" data-en="Led requirement interviews, feature definition, workflow design, and MVP breakdown, producing standardized PRDs">主导需求访谈、功能定义、流程设计与 MVP 拆解，产出标准化 PRD</span></li>
-    <li><span data-sc="使用 Axure 制作高保真原型，作为跨部门沟通标准" data-tc="使用 Axure 製作高保真原型，作為跨部門溝通標準" data-en="Created high-fidelity prototypes using Axure as the cross-departmental communication standard">使用 Axure 制作高保真原型，作为跨部门沟通标准</span></li>
-    <li><span data-sc="撰写完整 PRD（User Story / Flow / Edge Case / 验收条件），开发理解偏差降低 60%" data-tc="撰寫完整 PRD（User Story / Flow / Edge Case / 驗收條件），開發理解偏差降低 60%" data-en="Wrote complete PRDs (User Story / Flow / Edge Case / Acceptance Criteria), reducing development misunderstanding by 60%">撰写完整 PRD（User Story / Flow / Edge Case / 验收条件），开发理解偏差降低 60%</span></li>
-    <li><span data-sc="规划 Sprint/Milestone 版本节奏，协调前后端、QA 与运营排程" data-tc="規劃 Sprint/Milestone 版本節奏，協調前後端、QA 與營運排程" data-en="Planned Sprint/Milestone release cadence, coordinating frontend, backend, QA, and operations schedules">规划 Sprint/Milestone 版本节奏，协调前后端、QA 与运营排程</span></li>
-    <li><span data-sc="主导 UAT 验收，定义测试案例并确保功能符合商业需求" data-tc="主導 UAT 驗收，定義測試案例並確保功能符合商業需求" data-en="Led UAT acceptance, defining test cases and ensuring features met business requirements">主导 UAT 验收，定义测试案例并确保功能符合商业需求</span></li>
-    <li><span data-sc="追踪进度与风险，提前识别时程冲突并提出调整方案" data-tc="追蹤進度與風險，提前識別時程衝突並提出調整方案" data-en="Tracked progress and risks, proactively identifying schedule conflicts and proposing adjustments">追踪进度与风险，提前识别时程冲突并提出调整方案</span></li>
-  </ul>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="高级产品经理" data-tc="高級產品經理" data-en="Senior Product Manager">高级产品经理</span></div>
-    <div class="job-company"><span data-sc="ST（台湾）" data-tc="ST（台灣）" data-en="ST (Taiwan)">ST（台湾）</span></div>
-    <div class="job-date"><span data-sc="2023/09 - 2024/04" data-tc="2023/09 - 2024/04" data-en="2023/09 - 2024/04">2023/09 - 2024/04</span></div>
-  </div>
-  <p><span data-sc="负责博弈游戏产品的 Roadmap 规划与跨部门整合。" data-tc="負責博弈遊戲產品的 Roadmap 規劃與跨部門整合。" data-en="Responsible for gaming product Roadmap planning and cross-departmental integration.">负责博弈游戏产品的 Roadmap 规划与跨部门整合。</span></p>
-  <ul>
-    <li><span data-sc="将商业目标拆解为可执行功能模块，建立需求评估机制（商业价值 × 开发成本 × 风险）" data-tc="將商業目標拆解為可執行功能模組，建立需求評估機制（商業價值 × 開發成本 × 風險）" data-en="Decomposed business objectives into executable feature modules, establishing a requirement evaluation framework (business value x development cost x risk)">将商业目标拆解为可执行功能模块，建立需求评估机制（商业价值 × 开发成本 × 风险）</span></li>
-    <li><span data-sc="设计产品流程图、Wireframe 与 Prototype，作为开发依据" data-tc="設計產品流程圖、Wireframe 與 Prototype，作為開發依據" data-en="Designed product flowcharts, wireframes, and prototypes as the basis for development">设计产品流程图、Wireframe 与 Prototype，作为开发依据</span></li>
-    <li><span data-sc="主导跨部门会议，整合运营、技术、客服等单位意见" data-tc="主導跨部門會議，整合營運、技術、客服等單位意見" data-en="Led cross-departmental meetings, integrating input from operations, engineering, and customer service">主导跨部门会议，整合运营、技术、客服等单位意见</span></li>
-    <li><span data-sc="建立标准化 PRD 与验收模板，团队开发效率提升 30%" data-tc="建立標準化 PRD 與驗收模板，團隊開發效率提升 30%" data-en="Established standardized PRD and acceptance templates, improving team development efficiency by 30%">建立标准化 PRD 与验收模板，团队开发效率提升 30%</span></li>
-    <li><span data-sc="参与产品上线后数据观察与用户回馈，驱动持续优化" data-tc="參與產品上線後數據觀察與使用者回饋，驅動持續優化" data-en="Participated in post-launch data analysis and user feedback collection, driving continuous optimization">参与产品上线后数据观察与用户回馈，驱动持续优化</span></li>
-  </ul>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="公司负责人 / CEO" data-tc="公司負責人 / CEO" data-en="Founder / CEO">公司负责人 / CEO</span></div>
-    <div class="job-company"><span data-sc="银月数位顾问（台湾）" data-tc="銀月數位顧問（台灣）" data-en="Silvermoon Digital Consulting (Taiwan)">银月数位顾问（台湾）</span></div>
-    <div class="job-date"><span data-sc="2021/05 - 2023/09" data-tc="2021/05 - 2023/09" data-en="2021/05 - 2023/09">2021/05 - 2023/09</span></div>
-  </div>
-  <p><span data-sc="自营游戏与系统开发公司，主导多款棋牌与管理系统产品的规划与交付。" data-tc="自營遊戲與系統開發公司，主導多款棋牌與管理系統產品的規劃與交付。" data-en="Ran a game and system development company, leading the planning and delivery of multiple card game and management system products.">自营游戏与系统开发公司，主导多款棋牌与管理系统产品的规划与交付。</span></p>
-  <div class="job-sub"><span data-sc="游戏产品" data-tc="遊戲產品" data-en="Game Products">游戏产品</span></div>
-  <ul>
-    <li><span data-sc="CityPoker 棋牌后端管理系统 — 产品规划、开发管理、线上运营（运行中）" data-tc="CityPoker 棋牌後端管理系統 — 產品規劃、開發管理、線上營運（運行中）" data-en="CityPoker Card Game Backend Management System — product planning, development management, live operations (running)">CityPoker 棋牌后端管理系统 — 产品规划、开发管理、线上运营（运行中）</span></li>
-    <li><span data-sc="58Poker 全套棋牌系统 — 从架构设计到上线部署的完整产品负责人" data-tc="58Poker 全套棋牌系統 — 從架構設計到上線部署的完整產品負責人" data-en="58Poker Full Card Game System — complete product owner from architecture design to deployment">58Poker 全套棋牌系统 — 从架构设计到上线部署的完整产品负责人</span></li>
-  </ul>
-  <div class="job-sub"><span data-sc="企业级系统" data-tc="企業級系統" data-en="Enterprise Systems">企业级系统</span></div>
-  <ul>
-    <li><span data-sc="调查局毒品管理系统（线上运行中）" data-tc="調查局毒品管理系統（線上運行中）" data-en="Investigation Bureau Drug Management System (in production)">调查局毒品管理系统（线上运行中）</span></li>
-    <li><span data-sc="永丰银行财税稽查系统（线上运行中）" data-tc="永豐銀行財稅稽查系統（線上運行中）" data-en="Bank SinoPac Tax Audit System (in production)">永丰银行财税稽查系统（线上运行中）</span></li>
-    <li><span data-sc="舒芙亚连锁美业客户管理系统（线上运行中）" data-tc="舒芙亞連鎖美業客戶管理系統（線上運行中）" data-en="SuFuYa Chain Beauty Salon CRM System (in production)">舒芙亚连锁美业客户管理系统（线上运行中）</span></li>
-  </ul>
-  <p style="margin-top:6px;"><span data-sc="管理：公司运营、团队招募、项目管理、客户沟通、新业务拓展" data-tc="管理：公司營運、團隊招募、專案管理、客戶溝通、新業務拓展" data-en="Management: company operations, team recruitment, project management, client communication, business development">管理：公司运营、团队招募、项目管理、客户沟通、新业务拓展</span></p>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="产品经理 / 技术组长" data-tc="產品經理 / 技術組長" data-en="Product Manager / Tech Lead">产品经理 / 技术组长</span></div>
-    <div class="job-company"><span data-sc="AG 集团 - NWF 及 IVI（菲律宾）" data-tc="AG 集團 - NWF 及 IVI（菲律賓）" data-en="AG Group - NWF & IVI (Philippines)">AG 集团 - NWF 及 IVI（菲律宾）</span></div>
-    <div class="job-date"><span data-sc="2019/06 - 2021/05 ｜ IVI 管理 12 人" data-tc="2019/06 - 2021/05 ｜ IVI 管理 12 人" data-en="2019/06 - 2021/05 ｜ IVI Team of 12">2019/06 - 2021/05 ｜ IVI 管理 12 人</span></div>
-  </div>
-  <p><span data-sc="从技术骨干转型为产品经理，负责游戏产品需求管理与跨团队协调。" data-tc="從技術骨幹轉型為產品經理，負責遊戲產品需求管理與跨團隊協調。" data-en="Transitioned from technical backbone to Product Manager, responsible for game product requirement management and cross-team coordination.">从技术骨干转型为产品经理，负责游戏产品需求管理与跨团队协调。</span></p>
-  <ul>
-    <li><span data-sc="负责游戏产品需求分析、功能规划与开发跟进" data-tc="負責遊戲產品需求分析、功能規劃與開發跟進" data-en="Responsible for game product requirement analysis, feature planning, and development follow-up">负责游戏产品需求分析、功能规划与开发跟进</span></li>
-    <li><span data-sc="建立菲籍开发团队管理制度，规范开发流程与代码规范" data-tc="建立菲籍開發團隊管理制度，規範開發流程與程式碼規範" data-en="Established management systems for the Filipino development team, standardizing development processes and code conventions">建立菲籍开发团队管理制度，规范开发流程与代码规范</span></li>
-    <li><span data-sc="主导电话销售系统、VIP 客户服务系统等产品 0→1 开发" data-tc="主導電話銷售系統、VIP 客戶服務系統等產品 0→1 開發" data-en="Led 0-to-1 development of telesales system, VIP customer service system, and other products">主导电话销售系统、VIP 客户服务系统等产品 0→1 开发</span></li>
-    <li><span data-sc="担任运营与技术团队的核心沟通节点，确保需求准确落地" data-tc="擔任營運與技術團隊的核心溝通節點，確保需求準確落地" data-en="Served as the core communication hub between operations and technical teams, ensuring accurate requirement implementation">担任运营与技术团队的核心沟通节点，确保需求准确落地</span></li>
-    <li><span data-sc="具备 Java 后端开发经验（5 年），深度理解游戏系统架构与数据流" data-tc="具備 Java 後端開發經驗（5 年），深度理解遊戲系統架構與資料流" data-en="5 years of Java backend development experience with deep understanding of game system architecture and data flows">具备 Java 后端开发经验（5 年），深度理解游戏系统架构与数据流</span></li>
-  </ul>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="资深 Java 工程师 → 技术组长 → 技术主管" data-tc="資深 Java 工程師 → 技術組長 → 技術主管" data-en="Senior Java Engineer → Tech Lead → Technical Manager">资深 Java 工程师 → 技术组长 → 技术主管</span></div>
-    <div class="job-company"><span data-sc="AG 集团（菲律宾）" data-tc="AG 集團（菲律賓）" data-en="AG Group (Philippines)">AG 集团（菲律宾）</span></div>
-    <div class="job-date"><span data-sc="2015/11 - 2019/05（约 3.5 年）" data-tc="2015/11 - 2019/05（約 3.5 年）" data-en="2015/11 - 2019/05 (approx. 3.5 years)">2015/11 - 2019/05（约 3.5 年）</span></div>
-  </div>
-  <ul>
-    <li><span data-sc="首次进入博彩行业，从资深 Java 工程师快速成长为技术管理者" data-tc="首次進入博彩行業，從資深 Java 工程師快速成長為技術管理者" data-en="First entry into the gaming industry, rapidly growing from senior Java engineer to technical manager">首次进入博彩行业，从资深 Java 工程师快速成长为技术管理者</span></li>
-    <li><span data-sc="负责游戏后端系统架构设计与开发，主导多款游戏产品技术实现" data-tc="負責遊戲後端系統架構設計與開發，主導多款遊戲產品技術實現" data-en="Responsible for game backend architecture design and development, led technical implementation of multiple game products">负责游戏后端系统架构设计与开发，主导多款游戏产品技术实现</span></li>
-    <li><span data-sc="建立菲籍开发团队管理制度，规范开发流程与代码规范" data-tc="建立菲籍開發團隊管理制度，規範開發流程與程式碼規範" data-en="Established management systems for Filipino development teams, standardized development processes and coding standards">建立菲籍开发团队管理制度，规范开发流程与代码规范</span></li>
-    <li><span data-sc="此阶段完成从「纯技术」到「技术管理」的转型，为后续产品管理角色奠定基础" data-tc="此階段完成從「純技術」到「技術管理」的轉型，為後續產品管理角色奠定基礎" data-en="Completed the transition from 'pure tech' to 'tech management', laying the foundation for future product management roles">此阶段完成从「纯技术」到「技术管理」的转型，为后续产品管理角色奠定基础</span></li>
-  </ul>
-</div>
-
-<div class="job" style="page-break-inside:avoid">
-  <div class="job-header">
-    <div class="job-title"><span data-sc="Java 工程师" data-tc="Java 工程師" data-en="Java Engineer">Java 工程师</span></div>
-    <div class="job-company"><span data-sc="台湾各大企业" data-tc="台灣各大企業" data-en="Major Taiwan Enterprises">台湾各大企业</span></div>
-    <div class="job-date"><span data-sc="2007 - 2015（约 8 年）" data-tc="2007 - 2015（約 8 年）" data-en="2007 - 2015 (approx. 8 years)">2007 - 2015（约 8 年）</span></div>
-  </div>
-  <ul>
-    <li><span data-sc="金融业：中国信托、永丰商银 ｜ 电信业：远通集团、台湾大集团 ｜ 政府：健保案、军方系统" data-tc="金融業：中國信託、永豐商銀 ｜ 電信業：遠通集團、台灣大集團 ｜ 政府：健保案、軍方系統" data-en="Finance: CTBC, SinoPac | Telecom: Far EasTone, Taiwan Mobile | Gov: NHI, Military">金融业：中国信托、永丰商银 ｜ 电信业：远通集团、台湾大集团 ｜ 政府：健保案、军方系统</span></li>
-    <li><span data-sc="从基层 PG 成长至技术骨干，积累扎实的系统开发与架构设计能力" data-tc="從基層 PG 成長至技術骨幹，累積紮實的系統開發與架構設計能力" data-en="Grew from junior PG to technical backbone, accumulating solid system development and architecture design capabilities">从基层 PG 成长至技术骨干，积累扎实的系统开发与架构设计能力</span></li>
-  </ul>
-</div>
-</div>
-
-<h2 style="page-break-before:always"><span data-sc="敏捷开发实践" data-tc="敏捷開發實踐" data-en="Agile Development Practice">敏捷开发实践</span></h2>
-<p class="scrum-desc"><span data-sc="在多个项目中导入并实践敏捷开发方法，建立标准化流程提升团队效率：" data-tc="在多個專案中導入並實踐敏捷開發方法，建立標準化流程提升團隊效率：" data-en="Introduced and practiced agile development methods across multiple projects, establishing standardized processes to improve team efficiency:">在多个项目中导入并实践敏捷开发方法，建立标准化流程提升团队效率：</span></p>
-<div class="scrum-grid">
-  <div class="scrum-card"><strong><span data-sc="Sprint 规划" data-tc="Sprint 規劃" data-en="Sprint Planning">Sprint 规划</span></strong><span data-sc="按双周迭代拆解需求，明确验收标准" data-tc="按雙週迭代拆解需求，明確驗收標準" data-en="Bi-weekly iterations to break down requirements with clear acceptance criteria">按双周迭代拆解需求，明确验收标准</span></div>
-  <div class="scrum-card"><strong><span data-sc="Milestone 管控" data-tc="Milestone 管控" data-en="Milestone Management">Milestone 管控</span></strong><span data-sc="多条产品线并行，里程碑追踪确保如期交付" data-tc="多條產品線並行，里程碑追蹤確保如期交付" data-en="Parallel product lines with milestone tracking to ensure on-time delivery">多条产品线并行，里程碑追踪确保如期交付</span></div>
-  <div class="scrum-card"><strong><span data-sc="标准化 PRD" data-tc="標準化 PRD" data-en="Standardized PRD">标准化 PRD</span></strong><span data-sc="User Story / Flow / Edge Case / 验收条件" data-tc="User Story / Flow / Edge Case / 驗收條件" data-en="User Story / Flow / Edge Case / Acceptance Criteria">User Story / Flow / Edge Case / 验收条件</span></div>
-  <div class="scrum-card"><strong><span data-sc="UAT 验收" data-tc="UAT 驗收" data-en="UAT Acceptance">UAT 验收</span></strong><span data-sc="定义测试案例，功能符合商业需求才放行" data-tc="定義測試案例，功能符合商業需求才放行" data-en="Defined test cases; features released only when meeting business requirements">定义测试案例，功能符合商业需求才放行</span></div>
-  <div class="scrum-card"><strong><span data-sc="需求评估机制" data-tc="需求評估機制" data-en="Requirement Evaluation">需求评估机制</span></strong><span data-sc="商业价值 × 开发成本 × 风险三维评分" data-tc="商業價值 × 開發成本 × 風險三維評分" data-en="Three-dimensional scoring: business value x development cost x risk">商业价值 × 开发成本 × 风险三维评分</span></div>
-  <div class="scrum-card"><strong><span data-sc="持续优化" data-tc="持續優化" data-en="Continuous Improvement">持续优化</span></strong><span data-sc="上线后数据观察与用户回馈驱动迭代" data-tc="上線後數據觀察與使用者回饋驅動迭代" data-en="Post-launch data observation and user feedback-driven iteration">上线后数据观察与用户回馈驱动迭代</span></div>
-</div>
-
-<div class="section-alt">
-<h2><span data-sc="核心能力对照" data-tc="核心能力對照" data-en="Core Competency Matching">核心能力对照</span></h2>
-<table>
-  <thead><tr><th><span data-sc="JD 要求" data-tc="JD 要求" data-en="JD Requirement">JD 要求</span></th><th><span data-sc="我的匹配" data-tc="我的匹配" data-en="My Match">我的匹配</span></th></tr></thead>
-  <tbody>
-    <tr><td><span data-sc="5年以上游戏产品管理" data-tc="5年以上遊戲產品管理" data-en="5+ years game product management">5年以上游戏产品管理</span></td><td><span data-sc="✅ 7 年（2019至今）" data-tc="✅ 7 年（2019至今）" data-en="✅ 7 years (2019–present)">✅ 7 年（2019至今）</span></td></tr>
-    <tr><td><span data-sc="熟悉老虎机、棋牌" data-tc="熟悉老虎機、棋牌" data-en="Familiar with slots, card games">熟悉老虎机、棋牌</span></td><td><span data-sc="✅ RTP/水池/波动/机制设计全链路" data-tc="✅ RTP/水池/波動/機制設計全鏈路" data-en="✅ Full pipeline: RTP/pool/volatility/mechanism design">✅ RTP/水池/波动/机制设计全链路</span></td></tr>
-    <tr><td><span data-sc="团队管理" data-tc="團隊管理" data-en="Team management">团队管理</span></td><td><span data-sc="✅ 三次从零搭建团队（最大 30 人）" data-tc="✅ 三次從零搭建團隊（最大 30 人）" data-en="✅ Built teams from scratch 3 times (up to 30 people)">✅ 三次从零搭建团队（最大 30 人）</span></td></tr>
-    <tr><td>JIRA/Confluence/Trello</td><td><span data-sc="✅ 日常使用 + Axure/Miro/Figma" data-tc="✅ 日常使用 + Axure/Miro/Figma" data-en="✅ Daily use + Axure/Miro/Figma">✅ 日常使用 + Axure/Miro/Figma</span></td></tr>
-    <tr><td><span data-sc="数据分析驱动" data-tc="數據分析驅動" data-en="Data-driven analysis">数据分析驱动</span></td><td><span data-sc="✅ RTP 数据分析、用户行为优化、自建 Dashboard" data-tc="✅ RTP 數據分析、使用者行為優化、自建 Dashboard" data-en="✅ RTP data analysis, user behavior optimization, custom Dashboard">✅ RTP 数据分析、用户行为优化、自建 Dashboard</span></td></tr>
-    <tr><td><span data-sc="跨部门协调" data-tc="跨部門協調" data-en="Cross-departmental coordination">跨部门协调</span></td><td><span data-sc="✅ 跨国（台/菲/马）、跨部门（研发/运营/品牌）" data-tc="✅ 跨國（台/菲/馬）、跨部門（研發/營運/品牌）" data-en="✅ Cross-border (TW/PH/MY), cross-dept (R&D/Ops/Brand)">✅ 跨国（台/菲/马）、跨部门（研发/运营/品牌）</span></td></tr>
-    <tr><td><span data-sc="成功上线案例" data-tc="成功上線案例" data-en="Successful launch cases">成功上线案例</span></td><td><span data-sc="✅ 老虎机 + 棋牌 + 捕鱼机，多款运行中" data-tc="✅ 老虎機 + 棋牌 + 捕魚機，多款運行中" data-en="✅ Slots + Card Games + Fishing Games, multiple in production">✅ 老虎机 + 棋牌 + 捕鱼机，多款运行中</span></td></tr>
-    <tr><td><span data-sc="敏捷开发" data-tc="敏捷開發" data-en="Agile development">敏捷开发</span></td><td><span data-sc="✅ Sprint/Milestone/PRD 标准化" data-tc="✅ Sprint/Milestone/PRD 標準化" data-en="✅ Sprint/Milestone/PRD standardization">✅ Sprint/Milestone/PRD 标准化</span></td></tr>
-  </tbody>
-</table>
-</div>
-
-<h2><span data-sc="工具" data-tc="工具" data-en="Tools">工具</span></h2>
-<table>
-  <thead><tr><th><span data-sc="类别" data-tc="類別" data-en="Category">类别</span></th><th><span data-sc="工具" data-tc="工具" data-en="Tools">工具</span></th></tr></thead>
-  <tbody>
-    <tr><td><span data-sc="项目管理" data-tc="專案管理" data-en="Project Management">项目管理</span></td><td>JIRA / Confluence / Trello / Notion</td></tr>
-    <tr><td><span data-sc="产品设计" data-tc="產品設計" data-en="Product Design">产品设计</span></td><td>Axure / Figma / Miro</td></tr>
-    <tr><td><span data-sc="数据分析" data-tc="數據分析" data-en="Data Analysis">数据分析</span></td><td>Google Sheets / SQL / <span data-sc="自建 Dashboard" data-tc="自建 Dashboard" data-en="Custom Dashboard">自建 Dashboard</span></td></tr>
-    <tr><td><span data-sc="协作" data-tc="協作" data-en="Collaboration">协作</span></td><td>Slack / Telegram / Teams</td></tr>
-    <tr><td><span data-sc="技术理解" data-tc="技術理解" data-en="Technical Understanding">技术理解</span></td><td>Java / Node.js / PostgreSQL / API <span data-sc="规格" data-tc="規格" data-en="Spec">规格</span></td></tr>
-    <tr><td>Agent 框架</td><td>Claude Code CLI、Gemini API</td></tr>
-    <tr><td>自动化</td><td>n8n、Python 排程、GitHub Actions</td></tr>
-    <tr><td>部署</td><td>Docker + AWS + Cloudflare Pages</td></tr>
-  </tbody>
-</table>
-
-<div class="section-alt">
-<h2><span data-sc="教育 &amp; 证照" data-tc="教育 &amp; 證照" data-en="Education &amp; Certifications">教育 &amp; 证照</span></h2>
+<h2>教育 &amp; 基本信息</h2>
 <div class="edu-item">
-  <h3><span data-sc="亚东技术学院" data-tc="亞東技術學院" data-en="Oriental Institute of Technology">亚东技术学院</span></h3>
-  <p><span data-sc="电子工程学系 ｜ 四技" data-tc="電子工程學系 ｜ 四技" data-en="Department of Electronic Engineering ｜ Bachelor's">电子工程学系 ｜ 四技</span></p>
+  <h3>亚东技术学院</h3>
+  <p>电子工程学系 ｜ 四技</p>
 </div>
-<div class="edu-item" style="margin-top: 16px;">
-  <h3><span data-sc="证照" data-tc="證照" data-en="Certifications">证照</span></h3>
-  <p><span data-sc="SCJP（Sun Certified Java Programmer）" data-tc="SCJP（Sun Certified Java Programmer）" data-en="SCJP (Sun Certified Java Programmer)">SCJP（Sun Certified Java Programmer）</span></p>
-</div>
-<div class="edu-item" style="margin-top: 16px;">
-  <h3><span data-sc="语言" data-tc="語言" data-en="Languages">语言</span></h3>
-  <p><span data-sc="中文（母语）｜ 英文（工作沟通）｜ 闽南语" data-tc="中文（母語）｜ 英文（工作溝通）｜ 閩南語" data-en="Chinese (Native) ｜ English (Working Proficiency) ｜ Taiwanese Hokkien">中文（母语）｜ 英文（工作沟通）｜ 闽南语</span></p>
+<div class="edu-item" style="margin-top: 12px;">
+  <p>语言：中文（母语）｜ 英文（工作沟通）｜ 闽南语</p>
 </div>
 </div>
-
-<script>
-let lang = 'sc';
-function setLang(l) {
-  lang = l;
-  document.querySelectorAll('[data-sc]').forEach(function(el) {
-    el.textContent = el.getAttribute('data-' + lang);
-  });
-  document.querySelectorAll('.lang-switch button').forEach(function(btn) {
-    btn.classList.toggle('active', btn.id === 'btn-' + lang);
-  });
-}
-</script>
 
 </body>
 </html>
