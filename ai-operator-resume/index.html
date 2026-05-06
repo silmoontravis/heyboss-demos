@@ -338,36 +338,24 @@
 </div>
 </div>
 
-<h2>我的 AI Agent 架构思维</h2>
-<div style="background:#f7f9fc;padding:24px 28px;border-radius:12px;margin-bottom:16px;">
-  <p style="font-size:14px;color:#1a2744;font-weight:600;margin-bottom:12px;">核心理念：Agent 不是单次对话，而是一个有记忆、有技能、会成长的「数字大脑」</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;">
-    <div style="padding:16px;border:1px solid #e0e6ed;border-radius:8px;background:#fff;">
-      <p style="font-size:13px;font-weight:700;color:#2c6fbb;margin-bottom:8px;">🧠 大脑结构（我的实现）</p>
-      <p style="font-size:12px;color:#4a5568;line-height:1.8;margin:0;">
-        <strong>记忆层</strong> — 分层记忆系统（用户画像 / 项目状态 / 行为反馈 / 外部引用），跨 Session 持久化，支持遗忘与更新<br>
-        <strong>技能层</strong> — Markdown 定义的可复用 Skill（文献搜索 / 数据分析 / 内容生成 / 自动部署），按需加载<br>
-        <strong>感知层</strong> — Telegram / LINE / Email 多通道输入，24h 监听<br>
-        <strong>执行层</strong> — SSH / API / DB / 文件系统直接操作，不是建议而是动手做<br>
-        <strong>进化层</strong> — Python 排程自动学习，每日巡检知识库更新，越用越强
-      </p>
-    </div>
-    <div style="padding:16px;border:1px solid #e0e6ed;border-radius:8px;background:#fff;">
-      <p style="font-size:13px;font-weight:700;color:#2c6fbb;margin-bottom:8px;">🦞 与 OpenClaw 的对比</p>
-      <p style="font-size:12px;color:#4a5568;line-height:1.8;margin:0;">
-        OpenClaw 是优秀的开源 Agent 运行时（347K+ Stars），强在社区生态与 13,000+ 公共 Skills。<br><br>
-        <strong>我的差异化：</strong><br>
-        • 不依赖单一框架 — Claude Code / n8n / 自写脚本灵活组合<br>
-        • 记忆系统更深 — 不只是 Session 上下文，而是跨月份的持久化知识图谱<br>
-        • 商品化导向 — 每个 Agent 打包成安装包，非技术人员双击即用<br>
-        • 业务闭环 — 从需求分析到代码生成到部署到监控，全链路 Agent 覆盖
-      </p>
-    </div>
-  </div>
-  <p style="font-size:12px;color:#94a3b8;margin-top:12px;font-style:italic;">
-    以上是可公开的架构概要。完整的 Skill 设计模式、记忆分层策略与 Token 成本控制方法论，面试时可详细展示。
-  </p>
-</div>
+<h2>AI Agent 架构：我怎么搭「数字员工」</h2>
+
+<p>我不用 OpenClaw，但我理解它——347K Stars、13,000+ 公共 Skills、社区生态强大。我的选择不同，因为业务场景不同。</p>
+
+<h3>我搭的 Agent 长什么样</h3>
+<p>不是一个聊天机器人，是一个有记忆、有技能、会自我迭代的工作系统：</p>
+<ul>
+  <li><strong>持久记忆</strong> — 不是聊完就忘。用户画像、项目状态、踩过的坑，全部分层存储，跨月份累积，越用越懂业务</li>
+  <li><strong>可插拔技能</strong> — 每个业务能力写成一个 Skill 文件（Markdown 定义），需要时加载，不需要时不占资源</li>
+  <li><strong>多通道感知</strong> — Telegram、LINE、Email 同时监听，手机上发一句话就能触发整套工作流</li>
+  <li><strong>直接执行</strong> — 不是给建议让人去做，是 Agent 自己 SSH 进服务器、调 API、写数据库、部署上线</li>
+  <li><strong>自动进化</strong> — Python 排程每天跑，自动更新知识库、扫描新信息、产出日报周报</li>
+</ul>
+
+<h3>跟 OpenClaw 的核心差异</h3>
+<blockquote>OpenClaw 强在「通用性」——一个框架接所有平台。我强在「业务闭环」——从需求到交付，Agent 不只是中间环节，而是整条产线。</blockquote>
+
+<p>具体怎么设计 Skill、怎么控 Token 成本、怎么让 Agent 稳定跑而不是隔天就挂——这些细节，面试时我可以现场演示。</p>
 
 <div style="margin-top:48px;padding:24px 32px;background:#f0f4ff;border-radius:12px;border-left:4px solid #2c6fbb;">
   <p style="font-size:13px;color:#2c6fbb;font-weight:600;margin-bottom:8px;">关于这份履历</p>
